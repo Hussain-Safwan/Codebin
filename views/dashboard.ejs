@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Dashboard</title>
+  <link rel="stylesheet" href="/css/folder.css">
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="stylesheet" href="/fontawesome-free-5.12.0-web/css/all.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="/css/dashboard.css">
+
+</head>
+<body>
+    <nav class="navbar">
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Type to search">
+      </div>
+    </nav>
+
+    <div class="loader" id="loader">
+      <div class="cir1">
+      </div>
+      <div class="cir2">
+      </div>
+      <div class="cir3">
+      </div>
+    </div>
+
+    <div class="user-info">
+      <div class="image" id="user-image">
+        <img src="https://avatars1.githubusercontent.com/u/32009766?s=460&v=4" alt="">
+      </div>
+      <div class="text">
+        <div class="primary-info">
+         <strong>Hussain Safwan</strong>
+         <p class="organization">University of Dhaka</p>
+         <p class="location"><i class="fas fa-map-marker-alt"></i> Dhaka, Bangladesh</p>
+        </div>
+      </div>
+    </div>
+
+    <hr>
+<div class="lower">
+  <div class="left">
+    <div class="left-box">
+        <div class="act"> <strong>Activities</strong> </div>
+        <div class="act-box">
+          <div class="act-comp"> <a href="#" data-toggle="modal" data-target="#create-folder-dialog"> <pre><i class="fas fa-folder-plus"></i>  Create Folder</pre> </a> </div>
+          <a href="#"> <pre><i class="fas fa-share-square"></i>   Create Shared Folder</pre> </a>
+          <a href="#" data-toggle="modal" data-target="#upload-file-dialog"> <pre><i class="fas fa-file-code"></i>   Upload File</pre> </a>
+          <a href="#"> <pre><i class="fas fa-paste"></i>   New Paste</pre> </a>
+          <a href="#"> <pre><i class="fas fa-user-edit"></i>   Edit Profile</pre> </a>
+          <a href="#"> <pre><i class="fas fa-cog"></i></i>   Preferences</pre> </a>
+        </div>
+    </div>
+  </div>
+  <div class="right">
+    <ul class="nav nav-tabs">
+        <li class="nav-item" id="dir">
+          <a class="nav-link active" id="active" href="#">Directories <span class="badge badge-pill badge-secondary">10</span>
+          </a>
+        </li>
+        <li class="nav-item" id="file">
+          <a class="nav-link" href="#">Files </a>
+        </li>
+        <li class="nav-item" id="share-dir">
+          <a class="nav-link" href="#">Shared <span class="badge badge-pill badge-secondary">3</span></a>
+        </li>
+        <li class="nav-item" id="stat">
+            <a class="nav-link" href="#">Statistics</a>
+        </li>
+    </ul>
+
+    <div class="data-space">
+
+      <div class="directories" id="directories">
+        <% for (var i=0; i<10; i++) { %>
+          <a href="#">
+            <div class="box">
+              <div class="logo-area">
+                <i class="fas fa-folder"></i> </div>        
+              <div class="footer">
+                <p class="folder-title">CPP Folder</p>
+                <i onclick="myFunction()" class="fas fa-ellipsis-v option-btn"></i>
+              </div>
+            </div>
+          </a>
+          <% } %> 
+      </div> 
+      
+      <div class="files" id="files">
+        <% for (var i=0; i<6; i++) { %>
+          <a href="#">
+            <div class="box">
+              <div class="logo-area">
+                <i class="fas fa-file-code"></i> </div>        
+              <div class="footer">
+                <p class="folder-title">app.js</p>
+                <i onclick="myFunction()" class="fas fa-ellipsis-v option-btn"></i>
+              </div>
+            </div>
+          </a>
+          <% } %> 
+      </div>
+
+      <div class="shared-dir" id="shared-dir">
+        <% for (var i=0; i<3; i++) { %>
+          <a href="#">
+            <div class="box">
+              <div class="logo-area">
+                <i class="fas fa-share-square"></i> </div>        
+              <div class="footer">
+                <p class="folder-title">Shared</p>
+                <i onclick="myFunction()" class="fas fa-ellipsis-v option-btn"></i>
+              </div>
+            </div>
+          </a>
+          <% } %> 
+      </div>
+
+      <div class="statistics" id="statistics">
+          <h1>Statistics!</h1>
+      </div>
+      
+    </div>
+  </div>
+  </div>
+
+  <!-- --------- Create Folder ----------- -->
+
+  <div class="modal fade" id="create-folder-dialog" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalCenterTitle">Create New Folder</h5>
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+
+          <div class="name">
+            <p class="n">Name </p>
+            <input type="text" class="folder-name-input">
+          </div>
+          <br>
+          <div class="audience">
+            <p class="aud">Visibility </p>
+            <select name="" id="select-aud" class="select-aud">
+              <option value="public">Public</option>
+              <option value="private">Private</option>
+            </select>
+          </div>
+          
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-primary">Create</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- --------- Upload File --------- -->
+
+  <div class="modal fade" id="upload-file-dialog" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalCenterTitle">Upload File</h5>
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="select-file">
+            <input type="file" class="upload-file">
+          </div>
+          <br>
+          <div class="path">Upload to 
+            <select name="" id="select-dir" class="directory">
+              <option value="">Current</option>
+              <option value="">C++</option>
+              <option value="">Java</option>
+            </select>
+          </div>
+          
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-primary">Upload</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- -------- Option Menu ---------- -->
+  <!-- <div class="dropdown-content" id="myDropdown">
+      <div class="texts">
+        <p>Open</p>
+        <p>Rename</p>
+        <p>Copy</p>
+        <p>Move</p>
+        <p>Delete</p>
+      </div>
+    </div> -->
+
+</body>
+
+<script>
+$( document ).ready(function() {
+    console.log( "ready!" );
+    $('.nav-link').click(function(e) {
+      let class_name = e.target.className;
+      if (class_name != 'nav-link active'){
+        document.getElementById('active').className = 'nav-link';
+        document.getElementById('active').id = 'inactive';
+        e.target.className = 'nav-link active';
+        e.target.id = 'active';
+      }
+      console.log();
+    });
+
+    $('#dir').click( (e) => {
+      console.log('dir');
+      document.getElementById('loader').className = 'spinner';
+      setTimeout(function(){ 
+          document.getElementById('loader').className = 'loader';
+          document.getElementById('files').style.display = 'none';
+          document.getElementById('shared-dir').style.display = 'none';
+          document.getElementById('statistics').style.display = 'none';
+          document.getElementById('directories').style.display = 'grid';
+        }, 1005);
+    })
+
+    $('#file').click( (e) => {
+      console.log('file');
+      document.getElementById('loader').className = 'spinner';
+      setTimeout(function(){ 
+          document.getElementById('loader').className = 'loader';
+          document.getElementById('directories').style.display = 'none';
+          document.getElementById('shared-dir').style.display = 'none';
+          document.getElementById('statistics').style.display = 'none';
+          document.getElementById('files').style.display = 'grid';
+        }, 1005);
+    })
+
+    $('#share-dir').click( (e) => {
+      console.log('shared-dir');
+      document.getElementById('loader').className = 'spinner';
+      setTimeout(function(){ 
+          document.getElementById('loader').className = 'loader';
+          document.getElementById('directories').style.display = 'none';
+          document.getElementById('files').style.display = 'none';
+          document.getElementById('statistics').style.display = 'none';
+          document.getElementById('shared-dir').style.display = 'grid';
+        }, 1005);
+    })
+
+    $('#stat').click( (e) => {
+      console.log('shared-dir');
+      document.getElementById('loader').className = 'spinner';
+      setTimeout(function(){ 
+          document.getElementById('loader').className = 'loader';
+          document.getElementById('directories').style.display = 'none';
+          document.getElementById('files').style.display = 'none';
+          document.getElementById('shared-dir').style.display = 'none';
+          document.getElementById('statistics').style.display = 'block';
+        }, 1005);
+    })
+
+    function load() {
+      document.getElementById('loader').className = 'spinner';
+      setTimeout(function(){ 
+        document.getElementById('loader').className = 'loader';; 
+        }, 1005);
+    }
+});
+
+function myFunction() {
+  document.getElementById("myDropdown").classList.toggle("show");
+  console.log('toggle');
+}
+
+// Close the dropdown menu if the user clicks outside of it
+window.onclick = function(event) {
+  if (!event.target.matches('.dropbtn')) {
+    var dropdowns = document.getElementsByClassName("dropdown-content");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show')) {
+        openDropdown.classList.remove('show');
+      }
+    }
+  }
+}
+
+  </script>
+
+<script
+  src="https://code.jquery.com/jquery-3.4.1.js"
+  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</html>

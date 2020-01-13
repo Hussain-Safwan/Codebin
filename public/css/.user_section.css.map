@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,aAAa,CAAC;EACZ,KAAK,EAAE,GAAG;EACV,YAAY,EAAE,cAAc;CAC7B",
+    "sources": [
+        "../scss/.user_section.scss"
+    ],
+    "names": [],
+    "file": ".user_section.css"
+}

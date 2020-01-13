@@ -1,0 +1,461 @@
+@import url("https://fonts.googleapis.com/css?family=Noto+Sans&display=swap");
+body {
+  font-family: "Noto Sans", sans-serif;
+}
+
+.navbar {
+  height: 60px;
+  border-bottom: 2px solid red;
+  width: 100%;
+}
+
+.navbar .input-group {
+  width: 25%;
+  margin: auto;
+}
+
+.navbar .form-control {
+  border-radius: 20px 20px 20px 20px;
+}
+
+.loader {
+  display: none;
+}
+
+.spinner {
+  border-radius: 10px;
+  width: 10%;
+  height: 15vh;
+  margin: 21% auto;
+  position: fixed;
+  right: 0;
+  left: 0;
+  -webkit-animation: spin 1s linear;
+          animation: spin 1s linear;
+}
+
+.spinner .cir1 {
+  background-color: red;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin: 15% 18%;
+  position: absolute;
+  opacity: 0.5;
+}
+
+.spinner .cir2 {
+  background-color: blue;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin: 15% 46%;
+  position: absolute;
+  opacity: 0.5;
+}
+
+.spinner .cir3 {
+  background-color: green;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin: 38% 33%;
+  position: absolute;
+  opacity: 0.5;
+}
+
+@-webkit-keyframes spin {
+  100% {
+    -webkit-transform: rotate(720deg);
+            transform: rotate(720deg);
+  }
+}
+
+@keyframes spin {
+  100% {
+    -webkit-transform: rotate(720deg);
+            transform: rotate(720deg);
+  }
+}
+
+.user-info {
+  margin-top: 2%;
+  height: 25vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.user-info .image {
+  margin-left: 10%;
+  margin-top: 2%;
+}
+
+.user-info .image img {
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+}
+
+.user-info .text {
+  margin-left: 2%;
+}
+
+.user-info .text .primary-info {
+  font-size: 25px;
+  margin-top: 35%;
+}
+
+.user-info .text .primary-info .organization {
+  font-size: 17px;
+  color: gray;
+}
+
+.user-info .text .primary-info .location {
+  font-size: 17px;
+}
+
+hr {
+  width: 70%;
+  margin: auto;
+  color: #a1a1a1;
+}
+
+.lower {
+  font-family: "Noto Sans", sans-serif;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.lower .left {
+  width: 15%;
+}
+
+.lower .left .left-box {
+  margin-left: 5%;
+}
+
+.lower .left .left-box .act {
+  width: 90%;
+  border-bottom: 1px solid #ddd;
+  border-top: 1px solid #ddd;
+  padding: 10px;
+}
+
+.lower .left .left-box strong {
+  font-size: 18x;
+}
+
+.lower .left .left-box .act-box {
+  margin-top: 15px;
+  margin-left: 20px;
+}
+
+.lower .left .left-box .act-box pre {
+  padding: 5px 5px;
+  border-radius: 0px 15px 15px 0px;
+  font-family: "Noto Sans", sans-serif;
+  font-size: 17px;
+  background: -webkit-gradient(linear, right top, left top, color-stop(50%, white), color-stop(50%, #e9adad));
+  background: linear-gradient(to left, white 50%, #e9adad 50%);
+  background-size: 200% 100%;
+  background-position: right bottom;
+  cursor: pointer;
+  -webkit-transition: all ease-in 1s;
+  transition: all ease-in 1s;
+}
+
+.lower .left .left-box .act-box a {
+  color: black;
+  text-decoration: none;
+  -webkit-transition-duration: 1s;
+          transition-duration: 1s;
+}
+
+.lower .left .left-box .act-box pre:hover {
+  background-position: left bottom;
+}
+
+.lower .left .left-box .act-box i {
+  font-size: 20px;
+}
+
+.lower .right {
+  width: 75%;
+}
+
+.nav {
+  width: 85%;
+  margin: auto;
+}
+
+.nav a {
+  font-size: 17px;
+  color: black;
+  text-decoration: none;
+  -webkit-transition-duration: 1s;
+          transition-duration: 1s;
+}
+
+.nav a:hover {
+  color: red;
+}
+
+.active {
+  color: red;
+}
+
+.data-space {
+  width: 80%;
+}
+
+.data-space span {
+  background-color: red;
+  border-radius: 20px 20px 20px 20px;
+  color: red;
+}
+
+.data-space .directories {
+  width: 100%;
+  margin-left: 15%;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: 1fr 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-row-gap: 3em;
+  grid-column-gap: 1em;
+  grid-auto-rows: 155px;
+  grid-auto-columns: 155px;
+}
+
+.data-space .files {
+  width: 100%;
+  margin-left: 15%;
+  display: none;
+  -ms-grid-columns: 1fr 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-row-gap: 3em;
+  grid-column-gap: 1em;
+  grid-auto-rows: 155px;
+  grid-auto-columns: 155px;
+}
+
+.data-space .shared-dir {
+  width: 100%;
+  margin-left: 15%;
+  display: none;
+  -ms-grid-columns: 1fr 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-row-gap: 3em;
+  grid-column-gap: 1em;
+  grid-auto-rows: 155px;
+  grid-auto-columns: 155px;
+}
+
+.data-space .statistics {
+  width: 100%;
+  margin-left: 15%;
+  display: none;
+}
+
+.data-space .statistics h1 {
+  margin: auto;
+}
+
+.data-space .folder-title {
+  color: #333;
+}
+
+.data-space a .folder-title:hover {
+  text-decoration: none;
+}
+
+.add-folder {
+  font-size: 50px;
+  position: fixed;
+  bottom: 120px;
+  right: 200px;
+}
+
+.add-folder a {
+  color: #333;
+  text-decoration: none;
+  -webkit-transition-duration: 1s;
+          transition-duration: 1s;
+}
+
+.add-folder a:hover {
+  color: red;
+}
+
+@media only screen and (max-width: 800px) {
+  .navbar {
+    width: 100%;
+  }
+  .navbar input {
+    width: 90%;
+  }
+  .data-space {
+    margin: auto;
+    width: 100%;
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
+    grid-row-gap: 3em;
+    grid-column-gap: 1em;
+    grid-auto-rows: 155px;
+    grid-auto-columns: 155px;
+  }
+  .logo-area i {
+    font-size: 50px;
+  }
+  img {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+  }
+  .lower {
+    margin: auto;
+    width: 100%;
+  }
+  .left {
+    display: none;
+  }
+  .right {
+    margin: auto;
+    width: 100%;
+  }
+  .right .nav-tabs {
+    width: 100%;
+    margin: auto;
+  }
+}
+
+.texts {
+  width: 80%;
+  margin: auto;
+}
+
+.texts p {
+  width: 100%;
+  text-align: left;
+  margin-top: 15px;
+  font-size: 17px;
+  font-family: sans-serif;
+}
+
+p:hover {
+  background-color: #e2e0e0;
+}
+
+.popup {
+  display: none;
+  position: absolute;
+  /* padding: 40px; */
+  border: solid 1px #ddd;
+  border-radius: 5px 5px 5px 5px;
+  text-align: center;
+  width: 15%;
+  height: 250px;
+  -webkit-box-shadow: 0px 0px 5px 5px #e0e0e0;
+          box-shadow: 0px 0px 5px 5px #e0e0e0;
+}
+
+.dropbtn {
+  background-color: #3498DB;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+/* Dropdown button on hover & focus */
+.dropbtn:hover, .dropbtn:focus {
+  background-color: #2980B9;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  -webkit-box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+          box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.show {
+  display: block;
+}
+
+.modal button {
+  border: none;
+  background-color: red;
+  border-radius: 20px 20px 20px 20px;
+}
+
+.modal .btn-secondary {
+  background-color: #fff;
+  color: #333;
+}
+
+.modal .btn-primary:hover {
+  border: 1px solid red;
+  background-color: #fff;
+  color: red;
+}
+
+.modal input {
+  border: 2px solid #ddd;
+  border-radius: 20px 20px 20px 20px;
+}
+
+.modal select {
+  margin-left: 10%;
+  background-color: #fff;
+  border-radius: 20px 20px 20px 20px;
+  border: 2px solid #ddd;
+  width: 150px;
+}
+
+.modal .name {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.modal .name input {
+  margin-left: 10%;
+  width: 60%;
+}
+
+.modal .audience {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+/*# sourceMappingURL=dashboard.css.map */
