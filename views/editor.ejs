@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Codebin - Editor</title>
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="/fontawesome-free-5.12.0-web/css/all.css" />
+    <link rel="stylesheet" href="/css/editor.css" />
+  </head>
+  <body>
+    <form action="/run" id="run-form" method="POST">
+      <input type="hidden" name="source_code" id="source-code" value='code'/>
+      <input type="hidden" name="language" id="language" />
+    </form>
+    <div class="content">
+      <div class="left">
+        <div class="editor" id="editor">
+          <%= previousCode %>
+        </div>
+        <!-- <div class="alert alert-danger" role="alert">
+          <strong>Compilation Error </strong>
+          Code not executed due to a syntax error at line 8
+        </div> -->
+
+        <div class="input-box">
+          <strong>Input</strong>
+          <textarea
+            name="input-area"
+            id="input-area"
+            class="input-area"
+            cols="30"
+            rows="5"
+          ></textarea>
+        </div>
+
+        <div class="output-box">
+          <strong>Output</strong>
+          <div class="output-area">
+
+            <p class="op"><%= run_result %></p>
+            
+          </div>
+        </div>
+      </div>
+      <div class="right">
+        <div class="options-box">
+          <hr />
+          <strong>Options</strong>
+          <hr />
+          <br />
+          <div class="name">
+            Save as
+            <input type="text">
+          </div>
+          <br>  
+          <div class="language-selector">
+            Language
+            <select name="" id="lang">
+              <option value="C">C</option>
+              <option value="C++">C++</option>
+              <option value="Java">Java</option>
+              <option value="Python">Python</option>
+            </select>
+          </div>
+          <br>
+          <div class="dir-selector">
+            Directory
+            <select name="" id="lang">
+              <option value="C">C Codes</option>
+              <option value="C++">Java</option>
+              <option value="Java">CSE 1201</option>
+              <option value="Python">New Sem</option>
+            </select>
+          </div>
+          <br>
+          <div class="location">
+            Location
+            <div class="loca">/CSE 1201/a_pro.cpp</div>
+          </div>
+          <br>
+          <div class="tags">
+            Tags <a href="#"><i class="far fa-question-circle"></i></a>
+            <input type="text" class="tag" id="tag" />
+          </div>  
+          <br />
+          <div class="btns">
+            <button class="btn btn-primary" id="run-btn"><strong>Run</strong></button>
+            <button class="btn btn-primary" id="paste-btn"><strong>Paste!</strong></button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.7/ace.js"
+      integrity="sha256-C7DTYRJLG+B/VEzHGeoPMw699nsTQYPAXHKXZb+q04E="
+      crossorigin="anonymous"
+    ></script>
+    <script></script>
+
+    <script>
+      $(document).ready(function() {
+        console.log("ready!");
+        var editor = ace.edit("editor");
+        editor.setTheme("ace/theme/github");
+        editor.session.setMode("ace/mode/javascript");
+        editor.setOptions({
+          fontSize: "15pt"
+        });
+        $("#run-btn").click(e => {
+          const source_code = editor.getValue();
+          const language = $('#lang').val();
+          $('#source-code').val(source_code);
+          $('#language').val(language);
+          console.log($('#source-code').val());
+          $('#run-form').submit();
+        });
+      });
+    </script>
+  </body>
+</html>

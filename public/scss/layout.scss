@@ -1,0 +1,13 @@
+.navbar {
+  height: 60px;
+  border-bottom: 2px solid red;
+  width: 100%;
+
+  .input-group {
+    width: 25%;
+    margin: auto;
+  }
+  .form-control {
+    border-radius: 20px 20px 20px 20px;
+  }
+} 

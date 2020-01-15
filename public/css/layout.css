@@ -1,0 +1,15 @@
+.navbar {
+  height: 60px;
+  border-bottom: 2px solid red;
+  width: 100%;
+}
+
+.navbar .input-group {
+  width: 25%;
+  margin: auto;
+}
+
+.navbar .form-control {
+  border-radius: 20px 20px 20px 20px;
+}
+/*# sourceMappingURL=layout.css.map */

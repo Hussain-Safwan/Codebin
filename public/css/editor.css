@@ -1,0 +1,140 @@
+@import url("https://fonts.googleapis.com/css?family=Noto+Sans&display=swap");
+body {
+  font-family: "Noto Sans", sans-serif;
+}
+
+.content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.content .left {
+  width: 65%;
+  height: 100vh;
+  margin: 0% 2%;
+}
+
+.content .left .editor {
+  position: block;
+  width: 100%;
+  height: 60%;
+  margin: 2% 0%;
+  border: 1px solid #ddd;
+}
+
+.content .left .input-area {
+  margin-top: 5px;
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.content .left .output-area {
+  margin-top: 5px;
+  width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  min-height: 40px;
+}
+
+.content .left .output-area .op {
+  margin-top: 5px;
+  margin-left: 10px;
+}
+
+.content .right {
+  font-size: 18px;
+  width: 30%;
+}
+
+.content .right .options-box {
+  margin-top: 75px;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.content .right .options-box hr {
+  width: 100%;
+  color: #a1a1a1;
+}
+
+.content .right .options-box .name {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.content .right .options-box .name input {
+  width: 60%;
+  margin-left: 20px;
+  border-radius: 20px;
+  height: 35px;
+  border: 2px solid #d1cfcf;
+}
+
+.content .right .options-box .location {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.content .right .options-box .location .loca {
+  font-size: 15px;
+  padding: 6px;
+  margin-left: 20px;
+  border: 2px solid #d1cfcf;
+  border-radius: 10px;
+}
+
+.content .right .options-box .tags a {
+  color: gray;
+}
+
+.content .right .options-box .tags input[type=text] {
+  width: 100%;
+  margin-top: 8px;
+  border-radius: 20px;
+  height: 35px;
+  border: 1px solid #d1cfcf;
+}
+
+.content .right .options-box .btns {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+hr {
+  width: 100%;
+  border: 0.5px solid #d6d4d4;
+}
+
+select {
+  margin-left: 3%;
+  background-color: #fff;
+  border-radius: 20px 20px 20px 20px;
+  border: 2px solid #ddd;
+  width: 40%;
+  height: 35px;
+}
+
+.btn {
+  font-size: 16px;
+  padding: 5px;
+  width: 25%;
+  color: white;
+  border: none;
+  background-color: red;
+  border-radius: 20px 20px 20px 20px;
+}
+
+.btn-primary:hover {
+  border: 1px solid red;
+  background-color: #fff;
+  color: red;
+}
+/*# sourceMappingURL=editor.css.map */

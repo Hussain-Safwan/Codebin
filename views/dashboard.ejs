@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Dashboard</title>
+  <title>Hussain's Dashboard • Codebin</title>
   <link rel="stylesheet" href="/css/folder.css">
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <link rel="stylesheet" href="/fontawesome-free-5.12.0-web/css/all.css">
@@ -13,11 +13,7 @@
 
 </head>
 <body>
-    <nav class="navbar">
-      <div class="input-group">
-        <input type="text" class="form-control" placeholder="Type to search">
-      </div>
-    </nav>
+    
 
     <div class="loader" id="loader">
       <div class="cir1">
@@ -50,7 +46,7 @@
           <div class="act-comp"> <a href="#" data-toggle="modal" data-target="#create-folder-dialog"> <pre><i class="fas fa-folder-plus"></i>  Create Folder</pre> </a> </div>
           <a href="#"> <pre><i class="fas fa-share-square"></i>   Create Shared Folder</pre> </a>
           <a href="#" data-toggle="modal" data-target="#upload-file-dialog"> <pre><i class="fas fa-file-code"></i>   Upload File</pre> </a>
-          <a href="#"> <pre><i class="fas fa-paste"></i>   New Paste</pre> </a>
+          <a href="#" data-toggle="modal" data-target="#exampleModalLong"> <pre><i class="fas fa-paste"></i>   New Paste</pre> </a>
           <a href="#"> <pre><i class="fas fa-user-edit"></i>   Edit Profile</pre> </a>
           <a href="#"> <pre><i class="fas fa-cog"></i></i>   Preferences</pre> </a>
         </div>
@@ -194,6 +190,39 @@
     </div>
   </div>
 
+    <!-- --------- New Paste --------- -->
+
+    <div class="modal wide fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">New Paste</h5>
+            <button class="btn btn-primary" onclick="location.href ='/editor'" id="open-editor">Open Full Screen</button>
+          </div>
+          <div class="modal-body">
+            
+            <div class="container">
+              <div id="editor">
+                
+              </div>
+              <div class="path"> Language
+                <select name="" id="select-dir" class="directory">
+                  <option value="">C</option>
+                  <option value="">Java</option>
+                  <option value="">Python</option>
+                </select>
+              </div>
+            </div>
+
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+            <button type="button" class="btn btn-primary">Save</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
   <!-- -------- Option Menu ---------- -->
   <!-- <div class="dropdown-content" id="myDropdown">
       <div class="texts">
@@ -207,9 +236,24 @@
 
 </body>
 
+<script
+      src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.7/ace.js"
+      integrity="sha256-C7DTYRJLG+B/VEzHGeoPMw699nsTQYPAXHKXZb+q04E="
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      var editor = ace.edit("editor");
+      editor.setTheme("ace/theme/github");
+      editor.session.setMode("ace/mode/javascript");
+      editor.setOptions({
+        fontSize: "12pt"
+      });
+    </script>
+
 <script>
 $( document ).ready(function() {
     console.log( "ready!" );
+
     $('.nav-link').click(function(e) {
       let class_name = e.target.className;
       if (class_name != 'nav-link active'){
