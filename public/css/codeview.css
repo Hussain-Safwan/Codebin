@@ -1,0 +1,110 @@
+@import url("https://fonts.googleapis.com/css?family=Noto+Sans&display=swap");
+body {
+  font-family: "Noto Sans", sans-serif;
+}
+
+a {
+  color: black;
+  font-family: "Noto Sans", sans-serif;
+  font-size: 16px;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+.content {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: 100vh;
+  width: 100%;
+  margin-left: 3%;
+}
+
+.content .left {
+  width: 65%;
+  height: 100vh;
+}
+
+.content .left .header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  width: 100%;
+  height: 60px;
+  margin-top: 30px;
+  background-color: #e4e3e3;
+  border-radius: 10px 10px 0px 0px;
+}
+
+.content .left .header i {
+  padding: 12px 30px;
+  font-size: 30px;
+}
+
+.content .left .header i:hover {
+  color: #ee8686;
+}
+
+.content .left .header p {
+  padding: 12px 30px;
+  font-size: 20px;
+}
+
+.content .left .editor {
+  position: block;
+  margin-left: 15%;
+  width: 100%;
+  height: 100%;
+  margin: 2% 0%;
+  border: 2px solid #f0efef;
+}
+
+.content .right {
+  background-color: #eee;
+  right: 0;
+  width: 30%;
+  height: 100vh;
+  margin-left: 10%;
+}
+
+.content .right .right-contents {
+  width: 90%;
+  margin-left: 10%;
+}
+
+.content .right .actions {
+  width: 100%;
+}
+
+.content .right .actions p {
+  margin-left: 20%;
+}
+
+.content .right .upper-hr {
+  margin-top: 30%;
+}
+
+.content .right i {
+  font-size: 20px;
+  margin-left: 20%;
+}
+
+.content .right a {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 20px;
+  width: 90%;
+}
+
+.content .right a:hover {
+  background-color: #eeb0b0;
+  border-radius: 25px 0px 0px 25px;
+  color: black;
+}
+/*# sourceMappingURL=codeview.css.map */

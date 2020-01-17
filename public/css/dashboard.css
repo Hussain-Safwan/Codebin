@@ -71,55 +71,91 @@ body {
 
 @-webkit-keyframes colorChange1 {
   0% {
+    background-color: white;
+  }
+  20% {
     background-color: red;
   }
-  100% {
+  80% {
     background-color: blue;
+  }
+  100% {
+    background-color: white;
   }
 }
 
 @keyframes colorChange1 {
   0% {
+    background-color: white;
+  }
+  20% {
     background-color: red;
   }
-  100% {
+  80% {
     background-color: blue;
+  }
+  100% {
+    background-color: white;
   }
 }
 
 @-webkit-keyframes colorChange2 {
   0% {
+    background-color: white;
+  }
+  20% {
     background-color: blue;
   }
-  100% {
+  80% {
     background-color: green;
+  }
+  100% {
+    background-color: white;
   }
 }
 
 @keyframes colorChange2 {
   0% {
+    background-color: white;
+  }
+  20% {
     background-color: blue;
   }
-  100% {
+  80% {
     background-color: green;
+  }
+  100% {
+    background-color: white;
   }
 }
 
 @-webkit-keyframes colorChange3 {
   0% {
+    background-color: white;
+  }
+  20% {
     background-color: green;
   }
-  100% {
+  80% {
     background-color: red;
+  }
+  100% {
+    background-color: white;
   }
 }
 
 @keyframes colorChange3 {
   0% {
+    background-color: white;
+  }
+  20% {
     background-color: green;
   }
-  100% {
+  80% {
     background-color: red;
+  }
+  100% {
+    background-color: white;
   }
 }
 

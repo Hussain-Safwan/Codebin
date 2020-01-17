@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Code View</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="stylesheet" href="/fontawesome-free-5.12.0-web/css/all.css">
+  <link rel="stylesheet" href="/css/codeview.css"></link>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+</head>
+<body>
+  <div class="content">
+
+    <div class="left">
+      <div class="header">
+        <p class="name">a_pro.cpp</p>
+        <a href="#"><i class="far fa-clone"></i></a> 
+      </div>
+      <div class="editor" id="editor">
+        <%= source_code %>
+      </div>
+      <input type="hidden" id="source" value="<%= source_code %>">
+    </div>
+
+    <div class="right">
+      <div class="right-contents">
+        <hr class="upper-hr">
+      <h4>Contents</h4>
+      <hr>
+      <div class="details">
+        <p>Created</p>
+        <p>Owner</p>
+        <p>Size</p>
+        <p>Path</p>
+      </div>
+        <hr>
+        <h4>Actions</h4>
+        <hr>
+        <div class="actions">
+          <a href="#"><i class="fas fa-play"></i> <p>Run</p></a>
+          <a href="#"><i class="fas fa-share-alt"></i> <p>Shareable Link</p></a>
+          <a href="#"><i class="fas fa-pen-nib"></i><p>Rename</p></a>
+          <a href="#" id="download-btn"><i class="fas fa-file-download"></i><p>Download</p></a>
+          <a href="#"><i class="fas fa-retweet"></i><p>Move</p></a>
+          <a href="#"><i class="far fa-trash-alt"></i><p>Delete</p></a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.7/ace.js"
+      integrity="sha256-C7DTYRJLG+B/VEzHGeoPMw699nsTQYPAXHKXZb+q04E="
+      crossorigin="anonymous"
+    ></script>
+  
+  <script src="/js/FileSaver.js"></script>
+  <script>
+    $(document).ready( () => {
+      console.log('ready!');
+      var editor = ace.edit("editor");
+        editor.setTheme("ace/theme/github");
+        editor.session.setMode("ace/mode/javascript");
+        editor.setReadOnly(true);
+        editor.setOptions({
+          fontSize: "15pt"
+        });
+
+        $('#download-btn').click((e) => {
+          const source = $('#source').val();
+          var blob = new Blob([source],
+            { type: "text/plain;charset=utf-8" });
+          saveAs(blob, "a_pro.cpp");
+        })
+    })
+  </script>
+
+</body>
+</html>

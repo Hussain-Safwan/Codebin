@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Codebin - Editor</title>
+    <title>Codebin • Editor</title>
     <link
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
       rel="stylesheet"
@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="/css/editor.css" />
   </head>
   <body>
-    <form action="/run" id="run-form" method="POST">
+    <form action="/use/run" id="run-form" method="POST">
       <input type="hidden" name="source_code" id="source-code" value='code'/>
       <input type="hidden" name="language" id="language" />
     </form>
@@ -54,7 +54,7 @@
           <br />
           <div class="name">
             Save as
-            <input type="text">
+            <input type="text" id="save-as">
           </div>
           <br>  
           <div class="language-selector">
@@ -69,17 +69,23 @@
           <br>
           <div class="dir-selector">
             Directory
-            <select name="" id="lang">
-              <option value="C">C Codes</option>
-              <option value="C++">Java</option>
-              <option value="Java">CSE 1201</option>
-              <option value="Python">New Sem</option>
+            <select name="" id="dir-select">
+              <option value="C Codes">C Codes</option>
+              <option value="Java">Java</option>
+              <option value="CSE 1201">CSE 1201</option>
+              <option value="New Sem">New Sem</option>
             </select>
           </div>
           <br>
           <div class="location">
             Location
-            <div class="loca">/CSE 1201/a_pro.cpp</div>
+            <div class="loca">
+              <p id="loca-dir"></p>
+              <p>/</p>
+              <p id="loca-name"></p>
+              <p>.</p>
+              <p id="ext"></p>
+            </div>
           </div>
           <br>
           <div class="tags">
@@ -94,6 +100,8 @@
         </div>
       </div>
     </div>
+
+    <a href="/use/readfile">Read File</a>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script
@@ -119,6 +127,18 @@
           $('#language').val(language);
           console.log($('#source-code').val());
           $('#run-form').submit();
+        });
+        $('#save-as').on('input', () => {
+          const name = $('#save-as').val();
+          $('#loca-name').html(name);
+        });
+        $('#dir-select').on('change', () => {
+          const dir_name = $('#dir-select').val();
+          $('#loca-dir').html(dir_name);
+        });
+        $('#lang').on('change', () => {
+          const ext = $('#lang').val();
+          $('#ext').html(ext);
         });
       });
     </script>

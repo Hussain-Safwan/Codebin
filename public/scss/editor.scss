@@ -59,8 +59,10 @@ body {
       .location {
         display: flex;
         .loca {
+          display: flex;
+          min-width: 50%;
           font-size: 15px;
-          padding: 6px;
+          padding: 3px 8px;
           margin-left: 20px;
           border: 2px solid rgb(209, 207, 207);
           border-radius: 10px;

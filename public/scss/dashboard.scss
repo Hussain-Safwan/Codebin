@@ -52,16 +52,22 @@ body {
   100% {transform: rotate(720deg);}
 }
 @keyframes colorChange1 {
-  0% {background-color: red;}
-  100% {background-color: blue;}
+  0% {background-color: white;}
+  20% {background-color: red;}
+  80% {background-color: blue;}
+  100% {background-color: white;}
 }
 @keyframes colorChange2 {
-  0% {background-color: blue;}
-  100% {background-color: green;}
+  0% {background-color: white;}
+  20% {background-color: blue;}
+  80% {background-color: green;}
+  100% {background-color: white;}
 }
 @keyframes colorChange3 {
-  0% {background-color: green;}
-  100% {background-color: red;}
+  0% {background-color: white;}
+  20% {background-color: green;}
+  80% {background-color: red;}
+  100% {background-color: white;}
 }
 
 .user-info {

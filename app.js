@@ -29,54 +29,11 @@ app.use(
 app.get("/", (req, res) => {
   return res.render("dashboard");
 });
-app.get("/editor", (req, res) => {
-  return res.render("editor", {
-    previousCode: '//Codebin Editor',
-    run_result: ''
-  });
-});
 
-app.post("/run", (req, res) => {
-  const source_code = req.body.source_code;
-  const Language = req.body.language;
-  console.log("config: ", Language);
-  var hackerEarth = require("hackerearth-node");
+const routes = require('./routes/routes');
+app.use('/use', routes);
 
-  var hackerEarth = new hackerEarth("392c70615809060562e8fa455c34aa3c57753a94");
-  const clienSecret = "392c70615809060562e8fa455c34aa3c57753a94";
-  var config = {};
-  config.time_limit = 5;
-  config.memory_limit = 323244;
-  config.source = source_code;
-  config.input = "";
-  config.language = Language;
-  let output;
-  hackerEarth
-    .run(config)
-    .then(result => {
-      let parsedResult = JSON.parse(result);
-      output = parsedResult.run_status["output"];
-      if (parsedResult.compile_status != "OK") {
-        console.log("syntax error");
-        const err = "SyntaxError";
-        return res.render("editor", {
-          previousCode: source_code,
-          run_result: err
-        });
-      } else {
-        console.log(output);
-        return res.render("editor", {
-          previousCode: source_code,
-          run_result: output
-        });
-      }
-    })
-    .catch(err => {
-      console.log(err);
-    });
-});
-
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3007;
 app.listen(PORT, function() {
   console.log("Listening to ", PORT);
 });
