@@ -407,7 +407,7 @@ p:hover {
     border: 2px solid #ddd;
     width: 150px;
   }
-  .name {
+  .name, .emails {
     display: flex;
     input {
       margin-left: 10%;
@@ -419,5 +419,15 @@ p:hover {
   }
 }
 
-// style="color: white; background-color: #c3bcbc; border-radius: 20px; font-weight: bold; font-size: 15px; padding: 1px;" class="_badge"
+.tag-like {
+  border-radius: 20px;
+  border: 1px solid red;
+  color: red;
+  margin-left: 20%;
+  padding: 2px 6px;
+}
+.tag-like:hover {
+  text-decoration: none;
+  color: red;
+}
 

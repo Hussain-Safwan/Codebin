@@ -5,7 +5,8 @@ const controller = require('../controllers/posts');
 router.get('/editor', controller.get_editor);
 router.get('/codeview', controller.codeview);
 router.post('/run', controller.run_code);
-router.post('/downloadFile', controller.downloadFile);
 router.post('/readfile', controller.readFile);
-
+router.post('/run_from_view', controller.run_from_view);
+router.post('/inc_score', controller.inc_score);
+router.post('/create_shared_directory', controller.create_shared_directory);
 module.exports = router;

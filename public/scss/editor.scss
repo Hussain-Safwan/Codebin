@@ -79,6 +79,29 @@ body {
           height: 35px;
           border: 1px solid rgb(209, 207, 207);
         }
+        input::placeholder {
+          font-size: 12px;
+          text-align: center;
+        }
+        .tag-space {
+          display: flex;
+          height: 37px;
+          margin-top: 15px;
+          margin-left: 10px;
+          a {
+            border: 1px solid red;
+            border-radius: 15px;
+            font-size: 15px;
+            color: red;
+            padding: 3px 10px;
+            margin-left: 10px;
+          }
+          a:hover {
+            background-color: white;
+            color: red;
+            text-decoration: none;
+          }
+        }
       }
       .btns {
         display: flex;

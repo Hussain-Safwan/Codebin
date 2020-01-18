@@ -30,7 +30,7 @@
       </div>
       <div class="text">
         <div class="primary-info">
-         <strong>Hussain Safwan</strong>
+         <strong>Hussain Md Safwan</strong>
          <p class="organization">University of Dhaka</p>
          <p class="location"><i class="fas fa-map-marker-alt"></i> Dhaka, Bangladesh</p>
         </div>
@@ -49,7 +49,7 @@
         <div class="act"> <strong>Activities</strong> </div>
         <div class="act-box">
           <div class="act-comp"> <a href="#" data-toggle="modal" data-target="#create-folder-dialog"> <pre><i class="fas fa-folder-plus"></i>  Create Folder</pre> </a> </div>
-          <a href="#"> <pre><i class="fas fa-share-square"></i>   Create Shared Folder</pre> </a>
+          <a href="#" data-toggle="modal" data-target="#shared-folder-dialog"> <pre><i class="fas fa-share-square"></i>   Create Shared Folder</pre> </a>
           <a href="#" data-toggle="modal" data-target="#upload-file-dialog"> <pre><i class="fas fa-file-code"></i>   Upload File</pre> </a>
           <a href="#" data-toggle="modal" data-target="#exampleModalLong"> <pre><i class="fas fa-paste"></i>   New Paste</pre> </a>
           <a href="#"> <pre><i class="fas fa-user-edit"></i>   Edit Profile</pre> </a>
@@ -162,6 +162,52 @@
       </div>
     </div>
   </div>
+
+  <!-- --------Create Shared Folder--- -->
+
+  <div class="modal fade" id="shared-folder-dialog" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalCenterTitle">Create New Folder</h5>
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+
+          <div class="name">
+            <p class="n">Name </p>
+            <input type="text" id="shared-folder-name" class="folder-name-input">
+          </div>
+          <br>
+
+          <div class="emails">
+            <p class="em">Email </p>
+            <input type="text" id="shared-email" class="shared-email">
+            <a href="#"><i id="clear-btn" title="Clear added emails" class="far fa-times-circle"></i></a>
+          </div> <br>
+
+          <div id="recipents-space" class="recipents">
+            
+          </div> <br>
+
+          <div class="audience">
+            <p class="aud">Visibility </p>
+            <select name="" id="select-aud" class="select-aud">
+              <option value="public">Public</option>
+              <option value="private">Private</option>
+            </select>
+          </div>
+          
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-primary" id="shared-submit" data-dismiss="modal">Create</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
 
   <!-- --------- Upload File --------- -->
 
@@ -284,6 +330,41 @@ $( document ).ready(function() {
     $('#upload-btn').click( (e) => {
       $('#file-form').submit();
     })
+
+    let emailNo = 0;
+    let recipents = [];
+        $('#shared-email').on('keydown', function(event) {
+          const lastch = String.fromCharCode(event.keyCode);
+          if (lastch == ' ') {
+            emailNo++;
+
+            const emailAddr = $('#shared-email').val();
+            $("#recipents-space").append('<p><a class="tag-like" href="#">'+emailAddr+'</a></p>');
+            $('#shared-email').val('');
+            recipents.push(emailAddr);
+            
+            if(emailNo == 2){
+            $('#shared-email').prop('disabled', true);
+          }
+          }
+        });
+
+        $('#clear-btn').click((e) => {
+          emailNo = 0;
+          $('#recipents-space').empty();
+          $('#shared-email').prop('disabled', false);
+          recipents = [];
+        });
+
+        $('#shared-submit').click((e) => {
+          const folder_name = $('#shared-folder-name').val();
+          const parameters = {
+            'recipents': recipents,
+            'folderName': folder_name
+          };
+          console.log(folder_name)
+          $.post('/use/create_shared_directory', parameters).done((data, stat) => {})
+        });
 
     $('.nav-link').click(function(e) {
       let class_name = e.target.className;

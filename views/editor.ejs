@@ -89,8 +89,11 @@
           </div>
           <br>
           <div class="tags">
-            Tags <a href="#"><i class="far fa-question-circle"></i></a>
-            <input type="text" class="tag" id="tag" />
+            Tags <a href="#"><i class="far fa-question-circle"></i></a> 
+            <a href="#"><i id="clear-btn" title="Clear tags" class="far fa-times-circle"></i></a> 
+            <input type="text" class="tag" id="tag" placeholder="Space separated, with a maximum of 4" />
+            <div class="tag-space" id="tag-space">
+            </div>
           </div>  
           <br />
           <div class="btns">
@@ -100,8 +103,6 @@
         </div>
       </div>
     </div>
-
-    <a href="/use/readfile">Read File</a>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
     <script
@@ -120,6 +121,26 @@
         editor.setOptions({
           fontSize: "15pt"
         });
+        let tagNo = 0;
+        $('#tag').on('keydown', function(event) {
+          const lastch = String.fromCharCode(event.keyCode);
+          if (lastch == ' ') {
+            tagNo++;
+
+            const tag = $('#tag').val();
+            $("#tag-space").append('<a href="#">'+tag+'</a>');
+            $('#tag').val('');
+            
+            if(tagNo == 4){
+            $('#tag').prop('disabled', true);
+          }
+          }
+        });
+        $('#clear-btn').click((e) => {
+          tagNo = 0;
+          $('#tag-space').empty();
+          $('#tag').prop('disabled', false);
+        })
         $("#run-btn").click(e => {
           const source_code = editor.getValue();
           const language = $('#lang').val();

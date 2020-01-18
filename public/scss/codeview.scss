@@ -14,24 +14,116 @@ a:hover {
   display: flex;
   height: 100vh;
   width: 100%;
-  margin-left: 3%;
   .left {
     width: 65%;
     height: 100vh;
+    margin: auto;
+    .first-row {
+      width: 90%;
+      margin: auto;
+      margin-top: 50px;
+      display: flex;
+      justify-content: space-between;
+      .f-left {
+        display: flex;
+        img {
+          width: 60px;
+          width: 60px;
+          border-radius: 50%;
+        }
+        .non-image {
+          margin-top: 7px;
+          margin-left: 10px;
+          font-weight: bold;
+          .date-size {
+            font-weight: lighter;
+            display: flex;
+            color: gray;
+            font-size: 14px;
+          }
+        }
+      }
+      .btn {
+        background-color: white;
+        width: 100px;
+        color: red;
+        font-weight: bold;
+        padding: 5xp;
+        border: 2px solid red;
+        border-radius: 20px;
+      }
+      .btn:hover {
+        background-color: red;
+        color: white;
+      }
+    }
+
+    .second-row {
+      margin-top: 30px;
+      border: 2px solid rgb(221, 221, 221);
+      border-radius: 10px;
+      height: 50px;
+      .about {
+        border: 1px solid green;
+        border-radius: 10px;
+        padding: 0px 5px;
+        color: green;
+        font-size: 15px;
+        width: 60px;
+        margin-top: -12px;
+        margin-left: 30px;
+        background-color: white;
+      }
+      .inside {
+        display: flex;
+        justify-content: space-between;
+        width: 95%;
+        margin: auto;
+        .location {
+          margin-left: 6%;
+          font-size: 18px;
+          font-weight: 300;
+          display: flex;
+        }
+        .s-right {
+          display: flex;
+          .updated {
+            font-size: 14px;
+            color: gray;
+          }
+          i {
+            border-radius: 50%;
+            margin-left: 20px;
+            font-size: 17px;
+          }
+          i:hover {
+            color: rgb(238, 134, 134);
+          }
+        }
+      }
+    }
+
     .header {
       display: flex;
       justify-content: space-between;
       width: 100%;
+      margin-top: 20px;
       height: 60px;
-      margin-top: 30px;
-      background-color: rgb(228, 227, 227);
+      background-color: rgb(241, 239, 239);
       border-radius: 10px 10px 0px 0px;
-      i {
-        padding: 12px 30px;
-        font-size: 30px;
-      }
-      i:hover {
-        color: rgb(238, 134, 134);;
+      .right-icons {
+        display: flex;
+        margin-right: 25px;
+        i {
+          border-radius: 50%;
+          padding: 18px 18px;
+          font-size: 20px;
+          margin-left: 5px;
+        }
+        i:hover {
+          color: rgb(238, 134, 134);
+          background-color: #ddd;
+        }
       }
       p {
         padding: 12px 30px;

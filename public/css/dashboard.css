@@ -529,13 +529,13 @@ p:hover {
   width: 150px;
 }
 
-.modal .name {
+.modal .name, .modal .emails {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
 }
 
-.modal .name input {
+.modal .name input, .modal .emails input {
   margin-left: 10%;
   width: 60%;
 }
@@ -544,5 +544,18 @@ p:hover {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+}
+
+.tag-like {
+  border-radius: 20px;
+  border: 1px solid red;
+  color: red;
+  margin-left: 20%;
+  padding: 2px 6px;
+}
+
+.tag-like:hover {
+  text-decoration: none;
+  color: red;
 }
 /*# sourceMappingURL=dashboard.css.map */

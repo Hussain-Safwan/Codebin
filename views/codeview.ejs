@@ -14,39 +14,73 @@
   <div class="content">
 
     <div class="left">
+      <div class="first-row">
+        <div class="f-left">
+          <div class="image">
+            <img src="https://avatars1.githubusercontent.com/u/32009766?s=460&v=4" alt="">
+          </div>
+          <div class="non-image">
+            Hussain Md Safwan
+            <div class="date-size">
+              <p class="date">Jan 17 </p>
+              &#8226 
+              <p class="size"> 532 KB</p>
+            </div>
+          </div>
+        </div>
+        <div class="f-right">
+          <button class="btn btn-primary" id="run-btn">Run</button>
+        </div>
+      </div>
+
+      <form action="/use/run_from_view" method="POST" id="code-form">
+        <input type="hidden" name="source_code" id="source_code">
+        <input type="hidden" name="language" id="language">
+      </form>
+
+      <form action="" id="score-form">
+        <input type="hidden" name="score" id="score">
+      </form>
+
+      <div class="second-row">
+        <div class="about">About</div>
+        <div class="inside">
+          <div class="location">
+            <a href="#">C Codes</a>
+            <p>/</p>
+            <p>a_pro.cpp</p>
+          </div>
+          <div class="s-right">
+            <p class="updated">Updated Jan 17</p>
+            <a href="#"><i class="fas fa-pen-alt"></i></a>
+            <a href="#" id="download"><i class="fas fa-download"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <% if (run_result != ' ') { %>
+        <div class="second-row">
+          <div class="about">Output</div>
+          <div class="inside">
+            <%= run_result %>
+          </div>
+        </div>
+        <% } %>
+
       <div class="header">
         <p class="name">a_pro.cpp</p>
-        <a href="#"><i class="far fa-clone"></i></a> 
+        <div class="right-icons">
+          <a href="#" id="copy-btn"><i class="far fa-clone"></i></a> 
+          <a href="#"><i class="fas fa-pen-square"></i></a>
+          <a href="#"><i class="fas fa-share-alt"></i></a>
+          <a href="#"><i class="fas fa-retweet"></i></a>
+          <a href="#"><i class="far fa-trash-alt"></i></a>
+        </div>
       </div>
       <div class="editor" id="editor">
         <%= source_code %>
       </div>
       <input type="hidden" id="source" value="<%= source_code %>">
-    </div>
-
-    <div class="right">
-      <div class="right-contents">
-        <hr class="upper-hr">
-      <h4>Contents</h4>
-      <hr>
-      <div class="details">
-        <p>Created</p>
-        <p>Owner</p>
-        <p>Size</p>
-        <p>Path</p>
-      </div>
-        <hr>
-        <h4>Actions</h4>
-        <hr>
-        <div class="actions">
-          <a href="#"><i class="fas fa-play"></i> <p>Run</p></a>
-          <a href="#"><i class="fas fa-share-alt"></i> <p>Shareable Link</p></a>
-          <a href="#"><i class="fas fa-pen-nib"></i><p>Rename</p></a>
-          <a href="#" id="download-btn"><i class="fas fa-file-download"></i><p>Download</p></a>
-          <a href="#"><i class="fas fa-retweet"></i><p>Move</p></a>
-          <a href="#"><i class="far fa-trash-alt"></i><p>Delete</p></a>
-        </div>
-      </div>
     </div>
   </div>
 
@@ -68,11 +102,44 @@
           fontSize: "15pt"
         });
 
-        $('#download-btn').click((e) => {
+        $('#download').click((e) => {
           const source = $('#source').val();
           var blob = new Blob([source],
             { type: "text/plain;charset=utf-8" });
           saveAs(blob, "a_pro.cpp");
+        });
+
+        $('#run-btn').click((e) => {
+          const source_code = $('#source').val();
+          $('#source_code').val(source_code);
+          $('#language').val('C++');
+          $('#code-form').submit();
+        });
+
+        // Upgrade code display score
+        $('#editor').click((e) => {
+          $('#score').val(1);
+            $.ajax({
+                url:'/use/inc_score',
+                type:'post',
+                data:$('#score-form').serialize(),
+                success:function(){
+                    alert("worked");
+                }
+            });
+        })
+
+        // Upgrade copy score
+        $('#copy-btn').click((e) => {
+          $('#score').val(2);
+            $.ajax({
+                url:'/use/inc_score',
+                type:'post',
+                data:$('#score-form').serialize(),
+                success:function(){
+                    alert("worked");
+                }
+            });
         })
     })
   </script>

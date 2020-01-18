@@ -33,7 +33,7 @@ app.get("/", (req, res) => {
 const routes = require('./routes/routes');
 app.use('/use', routes);
 
-const PORT = process.env.PORT || 3007;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, function() {
   console.log("Listening to ", PORT);
 });
