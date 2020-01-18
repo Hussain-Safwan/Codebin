@@ -37,5 +37,3 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, function() {
   console.log("Listening to ", PORT);
 });
-
-// AIzaSyD8LUZ2FcwHr00X9lBGFAw9pwrBVkLiJXg google api key
