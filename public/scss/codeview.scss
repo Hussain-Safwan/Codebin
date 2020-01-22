@@ -103,6 +103,39 @@ a:hover {
       }
     }
 
+    #editor-menu{
+      .inside {
+        display: flex;
+        justify-content: space-between;
+      }
+      .edit-menu-btn {
+        display: flex;
+      }
+      .btn-cancel {
+        color: gray;
+        margin-right: 15px;
+        background-color: white;
+        border: white;
+      }
+      .btn-save {
+        font-weight: bold;
+        color: red;
+        background-color: white;
+        border: none;
+      }
+    }
+
+    .saved {
+      display: none;
+      color: green;
+      font-weight: bold;
+    }
+    .discard {
+      display: none;
+      color: red;
+      font-weight: bold;
+    }
+
     .header {
       display: flex;
       justify-content: space-between;

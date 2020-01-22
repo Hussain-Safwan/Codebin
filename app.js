@@ -30,10 +30,14 @@ app.get("/", (req, res) => {
   return res.render("dashboard");
 });
 
+app.get('/use/login', (req, res) => {
+  return res.render('login');
+})
+
 const routes = require('./routes/routes');
 app.use('/use', routes);
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 app.listen(PORT, function() {
   console.log("Listening to ", PORT);
 });

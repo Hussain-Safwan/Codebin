@@ -103,16 +103,13 @@ module.exports.run_from_view = (req, res) => {
 
 module.exports.inc_score = (req, res) => {
   const score = req.body.score;
-  console.log("score ", score);
 };
 
 module.exports.create_shared_directory = (req, res) => {
   const folderName = req.body.folderName;
   const reciepents = req.body.recipents;
-  console.log("folder name ", folderName);
   for (let i = 0; i < 2; i++) {
     let rec = reciepents[i].trim();
-    console.log(rec);
     sendMail(rec);
   }
   return res.redirect('back');

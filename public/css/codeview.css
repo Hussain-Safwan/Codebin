@@ -141,6 +141,47 @@ a:hover {
   color: #ee8686;
 }
 
+.content .left #editor-menu .inside {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.content .left #editor-menu .edit-menu-btn {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.content .left #editor-menu .btn-cancel {
+  color: gray;
+  margin-right: 15px;
+  background-color: white;
+  border: white;
+}
+
+.content .left #editor-menu .btn-save {
+  font-weight: bold;
+  color: red;
+  background-color: white;
+  border: none;
+}
+
+.content .left .saved {
+  display: none;
+  color: green;
+  font-weight: bold;
+}
+
+.content .left .discard {
+  display: none;
+  color: red;
+  font-weight: bold;
+}
+
 .content .left .header {
   display: -webkit-box;
   display: -ms-flexbox;
