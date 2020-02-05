@@ -202,6 +202,44 @@ hr {
   color: #a1a1a1;
 }
 
+.right .header {
+  margin-top: 10px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+  height: 50px;
+  border-bottom: 1px solid #e2e1e1;
+}
+
+.right .header .dir-name {
+  font-size: 25px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.right .header .dir-name i {
+  color: gray;
+}
+
+.right .header .dir-name p {
+  margin-left: 50px;
+}
+
+.right .header .options {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  font-size: 20px;
+}
+
+.right .header .options a {
+  color: gray;
+  margin-left: 90%;
+}
+
 .container {
   height: 520px;
 }
@@ -233,6 +271,8 @@ hr {
 
 .lower .left {
   width: 15%;
+  -webkit-transition: 1s;
+  transition: 1s;
 }
 
 .lower .left .left-box {
@@ -635,4 +675,4 @@ p:hover {
     display: none;
   }
 }
-/*# sourceMappingURL=dashboard.css.map */
+/*# sourceMappingURL=directory_view.css.map */

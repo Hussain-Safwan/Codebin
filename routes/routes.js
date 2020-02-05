@@ -4,6 +4,8 @@ const controller = require('../controllers/posts');
 
 router.get('/editor', controller.get_editor);
 router.get('/codeview', controller.codeview);
+router.get('/directory', controller.directory)
+router.post('/search', controller.search)
 router.post('/run', controller.run_code);
 router.post('/readfile', controller.readFile);
 router.post('/run_from_view', controller.run_from_view);

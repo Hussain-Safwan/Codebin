@@ -207,3 +207,27 @@ a:hover {
     }
   }
 }
+
+@media only screen and (max-width: 600px) {
+  .content {
+    font-size: 12px;
+    .image img {
+      width: 60px;
+      height: 60px;
+    }
+    button {
+      font-size: 12px;
+      width: 20%;
+    }
+    .editor {
+      font-size: 12px;
+    }
+    .left {
+      width: 95%;
+      margin: auto;
+    }
+    .header {
+      p {font-size: 10px;}
+    }
+  }
+} 

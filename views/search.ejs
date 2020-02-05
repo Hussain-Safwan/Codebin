@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Search Results</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="stylesheet" href="/fontawesome-free-5.12.0-web/css/all.css">
+  <link rel="stylesheet" href="/css/search.css"></link>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+</head>
+<body>
+  <div class="header">
+    <div class="cont">
+      <a href="#"> <div class="files" id="files">Files</div> </a>
+      <a href="#"> <div class="directories" id="directories">Directories</div> </a>
+      <a href="#"> <div class="users" id="users">Users</div> </a>
+    </div>
+  </div>
+
+  <div class="results-space">
+    <div class="file-show" id="file-show">
+      <% for (let i=0; i<5; i++) { %>
+        <div class="box">
+          <div class="logo">
+            <i class="fas fa-file-code"></i>
+          </div>
+          <div class="non-logo">
+            <a href="#"> <div class="name">apro.cpp</div> </a>
+            <div class="owner">Hussain Safwan</div>
+            <div class="flexbox">
+              <div class="language"><i class="fas fa-circle"></i> C++</div>
+              <div class="score"><i class="fas fa-circle"></i> 40</div>
+            </div>
+            <div class="tags">
+              <% for (let i=0; i<4; i++) { %> 
+                <a href="#" class="atags">tag</a>
+                <% } %>
+            </div> 
+            
+          </div>
+        </div>
+        <% } %>
+    </div>
+
+    <div class="dir-show" id="dir-show">
+      <% for (let i=0; i<5; i++) { %>
+        <div class="box">
+          <div class="logo">
+            <i class="fas fa-folder"></i>
+          </div>
+          <div class="non-logo">
+            <a href="#"> <div class="name">New folder</div> </a>
+            <div class="owner">Hussain Safwan</div>
+            <div class="flexbox">
+              <div class="language"><i class="fas fa-circle"></i> C++</div>
+              <div class="score"><i class="fas fa-circle"></i> 40</div>
+            </div>
+            <!-- <div class="tags">
+              <% for (let i=0; i<4; i++) { %> 
+                <a href="#" class="atags">tag</a>
+                <% } %>
+            </div>  -->
+            
+          </div>
+        </div>
+        <% } %>
+    </div>
+
+  </div>
+
+</body>
+
+<script>
+  $(document).ready(() => {
+    console.log('ready')
+
+    $('#files').click((e) => {
+      console.log('dir')
+      $('#file-show').show()
+      $('#dir-show').hide()
+    })
+
+    $('#directories').click((e) => {
+      console.log('dir')
+      $('#file-show').hide()
+      $('#dir-show').show()
+    })
+
+  })
+</script>
+
+</html>

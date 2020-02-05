@@ -4,12 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Hussain's Dashboard • Codebin</title>
+  <title>CPP Folder • Codebin</title>
   <link rel="stylesheet" href="/css/folder.css">
   <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
   <link rel="stylesheet" href="/fontawesome-free-5.12.0-web/css/all.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-  <link rel="stylesheet" href="/css/dashboard.css">
+  <link rel="stylesheet" href="/css/directory_view.css">
 
 </head>
 <body>
@@ -59,65 +59,31 @@
     </div>
   </div>
   <div class="right">
-    <ul class="nav nav-tabs">
-        <li class="nav-item" id="dir">
-          <a class="nav-link active" id="active" href="#">Directories <span class="badge badge-pill badge-secondary">10</span>
-          </a>
-        </li>
-        <li class="nav-item" id="file">
-          <a class="nav-link" href="#">Files </a>
-        </li>
-        <li class="nav-item" id="share-dir">
-          <a class="nav-link" href="#">Shared <span class="badge badge-pill badge-secondary">3</span></a>
-        </li>
-        <li class="nav-item" id="stat">
-            <a class="nav-link" href="#">Statistics</a>
-        </li>
-    </ul>
+    
+    <div class="header">
+      <div class="dir-name"> <a href="/"><i id="back-arrow" class="fas fa-arrow-left"></i></a> <p>CPP Folder</p> </div>
+      <div class="options">
+        <a href="#"><i class="fas fa-pen-square"></i></a>
+        <a href="#"><i class="fas fa-share-alt"></i></a>
+        <a href="#"><i class="far fa-trash-alt"></i></a>
+      </div>
+    </div>
 
     <div class="data-space">
 
       <div class="directories" id="directories">
         <% for (var i=0; i<10; i++) { %>
-          <a href="/use/directory">
+          <a href="#">
             <div class="box">
               <div class="logo-area">
-                <i class="fas fa-folder"></i> </div>        
+                <i class="fas fa-file"></i> </div>        
               <div class="footer">
-                <p class="folder-title">CPP Folder</p>
+                <p class="folder-title">CPP Files</p>
               </div>
             </div>
           </a>
           <% } %> 
       </div> 
-      
-      <div class="files" id="files">
-        <% for (var i=0; i<6; i++) { %>
-          <a href="#">
-            <div class="box">
-              <div class="logo-area">
-                <i class="fas fa-file-code"></i> </div>        
-              <div class="footer">
-                <p class="folder-title">app.js</p>
-              </div>
-            </div>
-          </a>
-          <% } %> 
-      </div>
-
-      <div class="shared-dir" id="shared-dir">
-        <% for (var i=0; i<3; i++) { %>
-          <a href="#">
-            <div class="box">
-              <div class="logo-area">
-                <i class="fas fa-share-square"></i> </div>        
-              <div class="footer">
-                <p class="folder-title">Shared</p>
-              </div>
-            </div>
-          </a>
-          <% } %> 
-      </div>
 
       <div class="statistics" id="statistics">
           <h1>Statistics!</h1>
@@ -263,7 +229,8 @@
                   <option value="">Python</option>
                 </select>
               </div>
-            </div>
+            </div> <br>
+            <p style="color: gray;">Uploads to current directory</p>
 
           </div>
           <div class="modal-footer">

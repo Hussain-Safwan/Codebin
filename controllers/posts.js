@@ -142,3 +142,12 @@ function sendMail(rec) {
     }
   });
 }
+
+module.exports.search = (req, res) => {
+  const phrase = req.body.search
+  return res.render('search')
+}
+
+module.exports.directory = (req, res) => {
+  res.render('directory_view')
+}

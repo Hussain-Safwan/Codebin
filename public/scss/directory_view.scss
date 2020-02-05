@@ -106,6 +106,33 @@ hr {
   color: rgb(161, 161, 161);
 }
 
+.right {
+  .header {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-around;
+    height: 50px;
+    border-bottom: 1px solid rgb(226, 225, 225);
+    .dir-name {
+      font-size: 25px;
+      display: flex;
+      i {
+        color: gray;
+      }
+      p {
+        margin-left: 50px;
+      }
+    }
+    .options {
+      display: flex;
+      font-size: 20px;
+      a {
+        color: gray;
+        margin-left: 90%;
+      }
+    }
+  }
+}
 
 .container {
   height: 520px;
@@ -133,6 +160,7 @@ hr {
 
   .left {
     width: 15%;
+    transition: 1s;
     .left-box {
       margin-left: 5%;
       .act {

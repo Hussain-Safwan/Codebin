@@ -10,11 +10,25 @@
 <body>
   <nav class="navbar">
     <div class="input-group">
-      <input type="text" class="form-control" placeholder="Type to search">
+      <input type="text" class="form-control" id="search-input" placeholder="Type to search">
     </div>
   </nav>
+  <form action="/use/search" method="POST" id="search-form">
+    <input type="hidden" name="search" id="search">
+  </form>
 
   <div class=""><%- body %></div>
 
 </body>
+<script>
+  $( "#search-input" ).keypress(function(e) {
+    const phrase = $('#search-input').val()
+    if((e.which == 10 || e.which == 13) && phrase != '') {
+
+      $('#search').val(phrase)
+      $('#search-form').submit()
+    }
+});
+
+</script>
 </html>

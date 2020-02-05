@@ -108,6 +108,7 @@
   <script>
     $(document).ready( () => {
       console.log('ready');
+
       $('#editor-menu').hide();
       var editor = ace.edit("editor");
         editor.setTheme("ace/theme/github");
@@ -116,6 +117,12 @@
         editor.setOptions({
           fontSize: "15pt"
         });
+
+          if ($(window).width()<600) {
+            editor.setOptions({
+              fontSize: '10pt'
+            })
+          }
 
         $('#edit-btn').click((e) => {
           editor.setReadOnly(false);

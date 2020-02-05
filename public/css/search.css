@@ -1,0 +1,191 @@
+@import url("https://fonts.googleapis.com/css?family=Noto+Sans&display=swap");
+body {
+  font-family: "Noto Sans", sans-serif;
+}
+
+.header {
+  width: 50%;
+  margin: auto;
+  height: 50px;
+  border-bottom: 1px solid #e9e8e8;
+}
+
+.header .cont {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  margin: auto;
+}
+
+.header a {
+  color: black;
+  width: 15%;
+  height: 100%;
+  margin-left: 3%;
+  text-align: center;
+  padding: 10px 0px;
+  font-size: 20px;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+
+.header a:hover {
+  border-bottom: 2px solid red;
+  text-decoration: none;
+  background-color: #f3f1f1;
+}
+
+.header .active {
+  border-bottom: 3px solid red;
+  text-decoration: none;
+  background-color: #f3f1f1;
+}
+
+.results-space {
+  width: 50%;
+  margin: auto;
+}
+
+.results-space .dir-show {
+  display: none;
+}
+
+.results-space .box {
+  margin: auto;
+  margin-top: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 90%;
+  height: 150px;
+  border: 1px solid #ecebeb;
+  border-radius: 5px;
+}
+
+.results-space .box .logo {
+  width: 15%;
+}
+
+.results-space .box .logo i {
+  font-size: 50px;
+  margin: 35px 35px;
+}
+
+.results-space .box .non-logo {
+  width: 60%;
+}
+
+.results-space .box .non-logo a {
+  color: black;
+  -webkit-transition: 1s;
+  transition: 1s;
+}
+
+.results-space .box .non-logo a:hover {
+  text-decoration: none;
+  color: red;
+}
+
+.results-space .box .non-logo .name {
+  margin-top: 10px;
+  font-size: 30px;
+}
+
+.results-space .box .non-logo .owner {
+  font-size: 15px;
+  color: gray;
+}
+
+.results-space .box .non-logo .flexbox {
+  width: 20%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.results-space .box .non-logo .flexbox .language i {
+  font-size: 15px;
+  color: #f8889b;
+}
+
+.results-space .box .non-logo .flexbox .score i {
+  font-size: 15px;
+  color: #0084ff;
+}
+
+.results-space .box .tags {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 10px;
+}
+
+.results-space .box .tags a {
+  border-radius: 10px;
+  background-color: pink;
+  padding: 0px 10px;
+  margin-left: 10px;
+}
+
+.results-space .box:hover {
+  -webkit-box-shadow: 1px;
+          box-shadow: 1px;
+}
+
+@media only screen and (max-width: 600px) {
+  .header {
+    width: 100%;
+  }
+  .header .cont {
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+  }
+  .header .cont a {
+    font-size: 15px;
+  }
+  .results-space {
+    width: 100%;
+  }
+  .results-space .file-show .logo i, .results-space .dir-show .logo i {
+    font-size: 25px;
+    margin: 15px 15px;
+  }
+  .results-space .file-show .non-logo .name, .results-space .dir-show .non-logo .name {
+    margin-top: 0px;
+    font-size: 15px;
+  }
+  .results-space .file-show .non-logo .owner, .results-space .dir-show .non-logo .owner {
+    font-size: 10px;
+  }
+  .results-space .file-show .non-logo .flexbox, .results-space .dir-show .non-logo .flexbox {
+    width: 35%;
+  }
+  .results-space .file-show .non-logo .flexbox .language, .results-space .dir-show .non-logo .flexbox .language {
+    font-size: 12px;
+  }
+  .results-space .file-show .non-logo .flexbox .language i, .results-space .dir-show .non-logo .flexbox .language i {
+    font-size: 10px;
+  }
+  .results-space .file-show .non-logo .flexbox .score, .results-space .dir-show .non-logo .flexbox .score {
+    font-size: 12px;
+  }
+  .results-space .file-show .non-logo .flexbox .score i, .results-space .dir-show .non-logo .flexbox .score i {
+    font-size: 10px;
+  }
+  .results-space .file-show .non-logo .tags, .results-space .dir-show .non-logo .tags {
+    margin-top: 0px;
+  }
+  .results-space .file-show .non-logo .tags a, .results-space .dir-show .non-logo .tags a {
+    font-size: 10px;
+  }
+  .results-space .file-show .box, .results-space .dir-show .box {
+    height: 80px;
+  }
+}
+/*# sourceMappingURL=search.css.map */

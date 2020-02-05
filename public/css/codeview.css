@@ -272,4 +272,28 @@ a:hover {
   border-radius: 25px 0px 0px 25px;
   color: black;
 }
+
+@media only screen and (max-width: 600px) {
+  .content {
+    font-size: 12px;
+  }
+  .content .image img {
+    width: 60px;
+    height: 60px;
+  }
+  .content button {
+    font-size: 12px;
+    width: 20%;
+  }
+  .content .editor {
+    font-size: 12px;
+  }
+  .content .left {
+    width: 95%;
+    margin: auto;
+  }
+  .content .header p {
+    font-size: 10px;
+  }
+}
 /*# sourceMappingURL=codeview.css.map */
