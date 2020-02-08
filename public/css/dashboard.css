@@ -438,7 +438,8 @@ p:hover {
 }
 
 /* Dropdown button on hover & focus */
-.dropbtn:hover, .dropbtn:focus {
+.dropbtn:hover,
+.dropbtn:focus {
   background-color: #2980B9;
 }
 
@@ -499,6 +500,12 @@ p:hover {
   border-radius: 20px 20px 20px 20px;
 }
 
+.modal .newpaste {
+  border: 1px solid #fff;
+  margin-left: 15px;
+  margin-top: 10px;
+}
+
 .modal select {
   margin-left: 10%;
   background-color: #fff;
@@ -507,13 +514,15 @@ p:hover {
   width: 150px;
 }
 
-.modal .name, .modal .emails {
+.modal .name,
+.modal .emails {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
 }
 
-.modal .name input, .modal .emails input {
+.modal .name input,
+.modal .emails input {
   margin-left: 10%;
   width: 60%;
 }

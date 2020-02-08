@@ -1,34 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
 </head>
 <link rel="stylesheet" href="/css/layout.css">
-<link rel="icon" href="/images/new_logo.jpg">
-<body>
-  <nav class="navbar">
-    <div class="input-group">
-      <input type="text" class="form-control" id="search-input" placeholder="Type to search">
-    </div>
-  </nav>
-  <form action="/use/search" method="POST" id="search-form">
-    <input type="hidden" name="search" id="search">
-  </form>
+<link rel="icon" href="/images/cb_logo.png">
 
-  <div class=""><%- body %></div>
+<body>
+    <nav class="navbar">
+        <div class="logo">
+            <a href="/"> <img src="/images/cb_logo.png" alt=""> </a>
+        </div>
+        <a href="#" class="icon"><i class="fas fa-search" id="search-icon"></i></a>
+
+        <div class="input-group" id="ig">
+            <input type="text" class="form-control" id="search-input" placeholder="Press enter to search">
+        </div>
+    </nav>
+    <form action="/use/search" method="POST" id="search-form">
+        <input type="hidden" name="search" id="search">
+    </form>
+
+    <div class="">
+        <%- body %>
+    </div>
 
 </body>
 <script>
-  $( "#search-input" ).keypress(function(e) {
-    const phrase = $('#search-input').val()
-    if((e.which == 10 || e.which == 13) && phrase != '') {
+    $("#search-input").keypress(function(e) {
+        const phrase = $('#search-input').val()
+        if ((e.which == 10 || e.which == 13) && phrase != '') {
 
-      $('#search').val(phrase)
-      $('#search-form').submit()
-    }
-});
+            $('#search').val(phrase)
+            $('#search-form').submit()
+        }
+    });
 
+    $('#search-icon').click((e) => {
+        $('#ig').width('25%')
+        $('#ig').css('visibility', 'visible')
+        $('#search-icon').css('visibility', 'hidden')
+    })
+    $('#search-input').focusout((e) => {
+        $('#ig').width('0px')
+        $('#search-icon').css('visibility', 'visible')
+        $('#ig').css('visibility', 'hidden')
+    })
 </script>
+
 </html>

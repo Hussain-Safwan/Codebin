@@ -1,7 +1,8 @@
 const express = require("express");
 const expressLayouts = require("express-ejs-layouts");
-
+const mongoose = require('mongoose')
 const bodyParser = require("body-parser");
+const passport = require('passport')
 var cookieParser = require("cookie-parser");
 var session = require("express-session");
 const app = express();
@@ -19,25 +20,27 @@ app.use(cookieParser());
 
 // Express Session
 app.use(
-  session({
-    secret: "secret_KEY",
-    saveUninitialized: true,
-    resave: true
-  })
+    session({
+        secret: "secret_KEY",
+        saveUninitialized: true,
+        resave: true
+    })
+);
+app.use(passport.initialize());
+app.use(passport.session());
+require('./config/passport')(passport);
+
+mongoose.connect('mongodb+srv://paws:safwan@cluster0-gvu5h.mongodb.net/test?retryWrites=true&w=majority', { useNewUrlParser: true },
+    () => console.log("atlas db connected")
 );
 
-app.get("/", (req, res) => {
-  return res.render("dashboard");
-});
-
-app.get('/use/login', (req, res) => {
-  return res.render('login');
-})
+const homeRoute = require('./routes/home')
+app.use('/', homeRoute)
 
 const routes = require('./routes/routes');
 app.use('/use', routes);
 
 const PORT = process.env.PORT || 3001;
 app.listen(PORT, function() {
-  console.log("Listening to ", PORT);
+    console.log("Listening to ", PORT);
 });

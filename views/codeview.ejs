@@ -1,196 +1,208 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Code View</title>
-  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-  <link rel="stylesheet" href="/fontawesome-free-5.12.0-web/css/all.css">
-  <link rel="stylesheet" href="/css/codeview.css"></link>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Code View</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="/fontawesome-free-5.12.0-web/css/all.css">
+    <link rel="stylesheet" href="/css/codeview.css"></link>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 </head>
+
 <body>
-  <div class="content">
+    <div class="content">
 
-    <div class="left">
-      <div class="first-row">
-        <div class="f-left">
-          <div class="image">
-            <img src="https://avatars1.githubusercontent.com/u/32009766?s=460&v=4" alt="">
-          </div>
-          <div class="non-image">
-            Hussain Md Safwan
-            <div class="date-size">
-              <p class="date">Jan 17 </p>
-              &#8226 
-              <p class="size"> 532 KB</p>
+        <div class="left">
+            <div class="first-row">
+                <div class="f-left">
+                    <div class="image">
+                        <img src="https://avatars1.githubusercontent.com/u/32009766?s=460&v=4" alt="">
+                    </div>
+                    <div class="non-image">
+                        Hussain Md Safwan
+                        <div class="date-size">
+                            <p class="date">
+                                <%= source_code.createdAt %>
+                            </p>
+                            &#8226
+                            <p class="size">
+                                <%= source_code.filesize %> KB
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="f-right">
+                    <button class="btn btn-primary" id="run-btn">Run</button>
+                </div>
             </div>
-          </div>
-        </div>
-        <div class="f-right">
-          <button class="btn btn-primary" id="run-btn">Run</button>
-        </div>
-      </div>
 
-      <form action="/use/run_from_view" method="POST" id="code-form">
-        <input type="hidden" name="source_code" id="source_code">
-        <input type="hidden" name="language" id="language">
-      </form>
+            <form action="/use/run_from_view" method="POST" id="code-form">
+                <input type="hidden" name="source_code" id="source_code">
+                <input type="hidden" name="language" id="language">
+            </form>
 
-      <form action="" id="score-form">
-        <input type="hidden" name="score" id="score">
-      </form>
+            <form action="" id="score-form">
+                <input type="hidden" name="score" id="score">
+            </form>
 
-      <div class="second-row">
-        <div class="about">About</div>
-        <div class="inside">
-          <div class="location">
-            <a href="#">C Codes</a>
-            <p>/</p>
-            <p>a_pro.cpp</p>
-          </div>
-          <div class="s-right">
-            <p class="updated">Updated Jan 17</p>
-            <a href="#" id="edit-btn"><i class="fas fa-pen-alt"></i></a>
-            <a href="#" id="download"><i class="fas fa-download"></i></a>
-          </div>
+            <div class="second-row">
+                <div class="about">About</div>
+                <div class="inside">
+                    <div class="location">
+                        <a href="#">C Codes</a>
+                        <p>/</p>
+                        <p>
+                            <%= source_code.filename %>
+                        </p>
+                    </div>
+                    <div class="s-right">
+                        <p class="updated">Updated Jan 17</p>
+                        <a href="#" id="edit-btn"><i class="fas fa-pen-alt"></i></a>
+                        <a href="#" id="download"><i class="fas fa-download"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="second-row" id="editor-menu">
+                <div class="about">Editor</div>
+                <div class="inside">
+                    The document is now set editable
+                    <div class="edit-menu-btn">
+                        <button class="btn-cancel" id="btn-cancel">Cancel</button>
+                        <button class="btn-save" id="btn-save">Save Changes</button>
+                    </div>
+                </div>
+            </div>
+            <div class="saved" id="saved"><i class="fas fa-check"></i> Changes Saved</div>
+            <div class="discard" id="discard"><i class="fas fa-times"></i> Changes Discarded</div>
+
+            <% if (run_result != ' ') { %>
+                <div id="output-box" class="second-row">
+                    <div class="about">Output</div>
+                    <div class="inside">
+                        <%= run_result %>
+                            <a href="#" id="close-output"> <i class="fas fa-times"></i> </a>
+                    </div>
+                </div>
+                <% } %>
+
+                    <div class="header">
+                        <p class="name">
+                            <%= source_code.filename %>
+                        </p>
+                        <div class="right-icons">
+                            <a href="#" id="copy-btn"><i class="far fa-clone"></i></a>
+                            <a href="#"><i class="fas fa-pen-square"></i></a>
+                            <a href="#"><i class="fas fa-share-alt"></i></a>
+                            <a href="#"><i class="fas fa-retweet"></i></a>
+                            <a href="#"><i class="far fa-trash-alt"></i></a>
+                        </div>
+                    </div>
+                    <div class="editor" id="editor">
+                        <%= source_code.fileContent %>
+                    </div>
+                    <input type="hidden" id="source" value="<%= source_code %>">
         </div>
-      </div>
-
-      <div class="second-row" id="editor-menu">
-        <div class="about">Editor</div>
-        <div class="inside">
-          The document is now set editable
-          <div class="edit-menu-btn">
-            <button class="btn-cancel" id="btn-cancel">Cancel</button>
-            <button class="btn-save" id="btn-save">Save Changes</button>
-          </div>
-        </div>
-      </div>
-      <div class="saved" id="saved"><i class="fas fa-check"></i> Changes Saved</div>
-      <div class="discard" id="discard"><i class="fas fa-times"></i> Changes Discarded</div>
-
-      <% if (run_result != ' ') { %>
-        <div id="output-box" class="second-row">
-          <div class="about">Output</div>
-          <div class="inside">
-            <%= run_result %>
-            <a href="#" id="close-output"> <i class="fas fa-times"></i> </a>
-          </div>
-        </div>
-        <% } %>
-
-      <div class="header">
-        <p class="name">a_pro.cpp</p>
-        <div class="right-icons">
-          <a href="#" id="copy-btn"><i class="far fa-clone"></i></a> 
-          <a href="#"><i class="fas fa-pen-square"></i></a>
-          <a href="#"><i class="fas fa-share-alt"></i></a>
-          <a href="#"><i class="fas fa-retweet"></i></a>
-          <a href="#"><i class="far fa-trash-alt"></i></a>
-        </div>
-      </div>
-      <div class="editor" id="editor">
-        <%= source_code %>
-      </div>
-      <input type="hidden" id="source" value="<%= source_code %>">
     </div>
-  </div>
 
-  <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.7/ace.js"
-      integrity="sha256-C7DTYRJLG+B/VEzHGeoPMw699nsTQYPAXHKXZb+q04E="
-      crossorigin="anonymous"
-    ></script>
-  
-  <script src="/js/FileSaver.js"></script>
-  <script>
-    $(document).ready( () => {
-      console.log('ready');
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.7/ace.js" integrity="sha256-C7DTYRJLG+B/VEzHGeoPMw699nsTQYPAXHKXZb+q04E=" crossorigin="anonymous"></script>
 
-      $('#editor-menu').hide();
-      var editor = ace.edit("editor");
-        editor.setTheme("ace/theme/github");
-        editor.session.setMode("ace/mode/javascript");
-        editor.setReadOnly(true);
-        editor.setOptions({
-          fontSize: "15pt"
-        });
+    <script src="/js/FileSaver.js"></script>
+    <script>
+        $(document).ready(() => {
+            console.log('ready');
 
-          if ($(window).width()<600) {
+            $('#editor-menu').hide();
+            var editor = ace.edit("editor");
+            editor.setTheme("ace/theme/github");
+            editor.session.setMode("ace/mode/javascript");
+            editor.setReadOnly(true);
             editor.setOptions({
-              fontSize: '10pt'
+                fontSize: "15pt"
+            });
+
+            if ($(window).width() < 600) {
+                editor.setOptions({
+                    fontSize: '10pt'
+                })
+            }
+
+            $('#edit-btn').click((e) => {
+                editor.setReadOnly(false);
+                $('#editor-menu').fadeIn();
+            });
+
+            $('#btn-save').click((e) => {
+                editor.setReadOnly(true);
+                $('#editor-menu').fadeOut();
+                $('#saved').fadeIn('slow');
+                setTimeout(() => {
+                    $('#saved').fadeOut('slow')
+                }, 2000);
+            });
+
+            $('#btn-cancel').click((e) => {
+                const previousCode = $('#source').val();
+                editor.setValue(previousCode);
+                editor.clearSelection();
+                editor.setReadOnly(true);
+                $('#editor-menu').fadeOut();
+                $('#discard').fadeIn('slow');
+                setTimeout(() => {
+                    $('#discard').fadeOut('slow')
+                }, 2000);
+            });
+
+            $('#close-output').click((e) => {
+                $('#output-box').fadeOut('slow');
+            });
+
+            $('#download').click((e) => {
+                const source = $('#source').val();
+                var blob = new Blob([source], {
+                    type: "text/plain;charset=utf-8"
+                });
+                saveAs(blob, "a_pro.cpp");
+            });
+
+            $('#run-btn').click((e) => {
+                const source_code = $('#source').val();
+                $('#source_code').val(source_code);
+                $('#language').val('C++');
+                $('#code-form').submit();
+            });
+
+            // Upgrade code display score
+            $('#editor').click((e) => {
+                $('#score').val(1);
+                $.ajax({
+                    url: '/use/inc_score',
+                    type: 'post',
+                    data: $('#score-form').serialize(),
+                    success: function() {
+                        alert("worked");
+                    }
+                });
             })
-          }
 
-        $('#edit-btn').click((e) => {
-          editor.setReadOnly(false);
-          $('#editor-menu').fadeIn();
-        });
-
-        $('#btn-save').click((e) => {
-          editor.setReadOnly(true);
-          $('#editor-menu').fadeOut();
-          $('#saved').fadeIn('slow');
-          setTimeout(() => {$('#saved').fadeOut('slow')}, 2000);
-        });
-
-        $('#btn-cancel').click((e) => {
-          const previousCode = $('#source').val();
-          editor.setValue(previousCode);
-          editor.clearSelection();
-          editor.setReadOnly(true);
-          $('#editor-menu').fadeOut();
-          $('#discard').fadeIn('slow');
-          setTimeout(() => {$('#discard').fadeOut('slow')}, 2000);
-        });
-
-        $('#close-output').click((e) => {
-          $('#output-box').fadeOut('slow');
-        });
-
-        $('#download').click((e) => {
-          const source = $('#source').val();
-          var blob = new Blob([source],
-            { type: "text/plain;charset=utf-8" });
-          saveAs(blob, "a_pro.cpp");
-        });
-
-        $('#run-btn').click((e) => {
-          const source_code = $('#source').val();
-          $('#source_code').val(source_code);
-          $('#language').val('C++');
-          $('#code-form').submit();
-        });
-
-        // Upgrade code display score
-        $('#editor').click((e) => {
-          $('#score').val(1);
-            $.ajax({
-                url:'/use/inc_score',
-                type:'post',
-                data:$('#score-form').serialize(),
-                success:function(){
-                    alert("worked");
-                }
-            });
+            // Upgrade copy score
+            $('#copy-btn').click((e) => {
+                $('#score').val(2);
+                $.ajax({
+                    url: '/use/inc_score',
+                    type: 'post',
+                    data: $('#score-form').serialize(),
+                    success: function() {
+                        alert("worked");
+                    }
+                });
+            })
         })
-
-        // Upgrade copy score
-        $('#copy-btn').click((e) => {
-          $('#score').val(2);
-            $.ajax({
-                url:'/use/inc_score',
-                type:'post',
-                data:$('#score-form').serialize(),
-                success:function(){
-                    alert("worked");
-                }
-            });
-        })
-    })
-  </script>
+    </script>
 
 </body>
+
 </html>

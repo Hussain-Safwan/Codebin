@@ -1,248 +1,256 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>CPP Folder • Codebin</title>
-  <link rel="stylesheet" href="/css/folder.css">
-  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-  <link rel="stylesheet" href="/fontawesome-free-5.12.0-web/css/all.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-  <link rel="stylesheet" href="/css/directory_view.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CPP Folder • Codebin</title>
+    <link rel="stylesheet" href="/css/folder.css">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="/fontawesome-free-5.12.0-web/css/all.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="/css/directory_view.css">
 
 </head>
+
 <body>
-    
+
 
     <div class="loader" id="loader">
-      <div class="cir1">
-      </div>
-      <div class="cir2">
-      </div>
-      <div class="cir3">
-      </div>
+        <div class="cir1">
+        </div>
+        <div class="cir2">
+        </div>
+        <div class="cir3">
+        </div>
     </div>
 
     <div class="user-info">
-      <div class="image" id="user-image">
-        <img src="https://avatars1.githubusercontent.com/u/32009766?s=460&v=4" alt="">
-      </div>
-      <div class="text">
-        <div class="primary-info">
-         <strong>Hussain Md Safwan</strong>
-         <p class="organization">University of Dhaka</p>
-         <p class="location"><i class="fas fa-map-marker-alt"></i> Dhaka, Bangladesh</p>
+        <div class="image" id="user-image">
+            <img src="https://avatars1.githubusercontent.com/u/32009766?s=460&v=4" alt="">
         </div>
-      </div>
+        <div class="text">
+            <div class="primary-info">
+                <strong>Hussain Md Safwan</strong>
+                <p class="organization">University of Dhaka</p>
+                <p class="location"><i class="fas fa-map-marker-alt"></i> Dhaka, Bangladesh</p>
+            </div>
+        </div>
     </div>
 
     <hr>
 
     <form action="/use/readfile" id="file-form" method="POST">
-      <input type="hidden" name="fileContent" id="file-loc">
+        <input type="hidden" name="fileContent" id="file-loc">
     </form>
 
-<div class="lower">
-  <div class="opener" id="opener"><a href="#"><i class="fas fa-bars"></i></a></div>
-  <div class="left" id="left">
-    <div class="left-box">
-        <div class="act"> <strong>Activities</strong> <a href="#" id="span-close"><i class="fas fa-bars"></i></a>  </div>
-        <div class="act-box">
-          <div class="act-comp"> <a href="#" data-toggle="modal" data-target="#create-folder-dialog"> <pre><i class="fas fa-folder-plus"></i>  Create Folder</pre> </a> </div>
-          <a href="#" data-toggle="modal" data-target="#shared-folder-dialog"> <pre><i class="fas fa-share-square"></i>   Create Shared Folder</pre> </a>
-          <a href="#" data-toggle="modal" data-target="#upload-file-dialog"> <pre><i class="fas fa-file-code"></i>   Upload File</pre> </a>
-          <a href="#" data-toggle="modal" data-target="#exampleModalLong"> <pre><i class="fas fa-paste"></i>   New Paste</pre> </a>
-          <a href="#"> <pre><i class="fas fa-user-edit"></i>   Edit Profile</pre> </a>
-          <a href="#"> <pre><i class="fas fa-cog"></i></i>   Preferences</pre> </a>
-        </div>
-    </div>
-  </div>
-  <div class="right">
-    
-    <div class="header">
-      <div class="dir-name"> <a href="/"><i id="back-arrow" class="fas fa-arrow-left"></i></a> <p>CPP Folder</p> </div>
-      <div class="options">
-        <a href="#"><i class="fas fa-pen-square"></i></a>
-        <a href="#"><i class="fas fa-share-alt"></i></a>
-        <a href="#"><i class="far fa-trash-alt"></i></a>
-      </div>
-    </div>
-
-    <div class="data-space">
-
-      <div class="directories" id="directories">
-        <% for (var i=0; i<10; i++) { %>
-          <a href="#">
-            <div class="box">
-              <div class="logo-area">
-                <i class="fas fa-file"></i> </div>        
-              <div class="footer">
-                <p class="folder-title">CPP Files</p>
-              </div>
+    <div class="lower">
+        <div class="opener" id="opener"><a href="#"><i class="fas fa-bars"></i></a></div>
+        <div class="left" id="left">
+            <div class="left-box">
+                <div class="act"> <strong>Activities</strong> <a href="#" id="span-close"><i class="fas fa-bars"></i></a> </div>
+                <div class="act-box">
+                    <div class="act-comp">
+                        <a href="#" data-toggle="modal" data-target="#create-folder-dialog"> <pre><i class="fas fa-folder-plus"></i>  Create Folder</pre> </a>
+                    </div>
+                    <a href="#" data-toggle="modal" data-target="#shared-folder-dialog"> <pre><i class="fas fa-share-square"></i>   Create Shared Folder</pre> </a>
+                    <a href="#" data-toggle="modal" data-target="#upload-file-dialog"> <pre><i class="fas fa-file-code"></i>   Upload File</pre> </a>
+                    <a href="#" data-toggle="modal" data-target="#exampleModalLong"> <pre><i class="fas fa-paste"></i>   New Paste</pre> </a>
+                    <a href="#"> <pre><i class="fas fa-user-edit"></i>   Edit Profile</pre> </a>
+                    <a href="#"> <pre><i class="fas fa-cog"></i></i>   Preferences</pre> </a>
+                </div>
             </div>
-          </a>
-          <% } %> 
-      </div> 
-
-      <div class="statistics" id="statistics">
-          <h1>Statistics!</h1>
-      </div>
-      
-    </div>
-  </div>
-  </div>
-
-  <!-- --------- Create Folder ----------- -->
-
-  <div class="modal fade" id="create-folder-dialog" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalCenterTitle">Create New Folder</h5>
-            <span aria-hidden="true">&times;</span>
-          </button>
         </div>
-        <div class="modal-body">
+        <div class="right">
 
-          <div class="name">
-            <p class="n">Name </p>
-            <input type="text" class="folder-name-input">
-          </div>
-          <br>
-          <div class="audience">
-            <p class="aud">Visibility </p>
-            <select name="" id="select-aud" class="select-aud">
+            <div class="header">
+                <div class="dir-name"> <a href="/"><i id="back-arrow" class="fas fa-arrow-left"></i></a>
+                    <p>CPP Folder</p>
+                </div>
+                <div class="options">
+                    <a href="#"><i class="fas fa-pen-square"></i></a>
+                    <a href="#"><i class="fas fa-share-alt"></i></a>
+                    <a href="#"><i class="far fa-trash-alt"></i></a>
+                </div>
+            </div>
+
+            <div class="data-space">
+
+                <div class="directories" id="directories">
+                    <% for (var i=0; i<file.length; i++) { %>
+                        <a href="/use/codeview/<%= file[i]._id %>">
+                            <div class="box">
+                                <div class="logo-area">
+                                    <i class="fas fa-file"></i> </div>
+                                <div class="footer">
+                                    <p class="folder-title">
+                                        <%= file[i].filename %>
+                                    </p>
+                                </div>
+                            </div>
+                        </a>
+                        <% } %>
+                </div>
+
+                <div class="statistics" id="statistics">
+                    <h1>Statistics!</h1>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- --------- Create Folder ----------- -->
+
+    <div class="modal fade" id="create-folder-dialog" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Create New Folder</h5>
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="name">
+                        <p class="n">Name </p>
+                        <input type="text" class="folder-name-input">
+                    </div>
+                    <br>
+                    <div class="audience">
+                        <p class="aud">Visibility </p>
+                        <select name="" id="select-aud" class="select-aud">
               <option value="public">Public</option>
               <option value="private">Private</option>
             </select>
-          </div>
-          
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary">Create</button>
+                </div>
+            </div>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-          <button type="button" class="btn btn-primary">Create</button>
-        </div>
-      </div>
     </div>
-  </div>
 
-  <!-- --------Create Shared Folder--- -->
+    <!-- --------Create Shared Folder--- -->
 
-  <div class="modal fade" id="shared-folder-dialog" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalCenterTitle">Create Shared Folder</h5>
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
+    <div class="modal fade" id="shared-folder-dialog" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Create Shared Folder</h5>
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
 
-          <div class="name">
-            <p class="n">Name </p>
-            <input type="text" id="shared-folder-name" class="folder-name-input">
-          </div>
-          <br>
+                    <div class="name">
+                        <p class="n">Name </p>
+                        <input type="text" id="shared-folder-name" class="folder-name-input">
+                    </div>
+                    <br>
 
-          <div class="emails">
-            <p class="em">Email </p>
-            <input type="text" id="shared-email" class="shared-email">
-            <a href="#"><i id="clear-btn" title="Clear added emails" class="far fa-times-circle"></i></a>
-          </div> <br>
+                    <div class="emails">
+                        <p class="em">Email </p>
+                        <input type="text" id="shared-email" class="shared-email">
+                        <a href="#"><i id="clear-btn" title="Clear added emails" class="far fa-times-circle"></i></a>
+                    </div> <br>
 
-          <div id="recipents-space" class="recipents">
-            
-          </div> <br>
+                    <div id="recipents-space" class="recipents">
 
-          <div class="audience">
-            <p class="aud">Visibility </p>
-            <select name="" id="select-aud" class="select-aud">
+                    </div> <br>
+
+                    <div class="audience">
+                        <p class="aud">Visibility </p>
+                        <select name="" id="select-aud" class="select-aud">
               <option value="public">Public</option>
               <option value="private">Private</option>
             </select>
-          </div>
-          
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" id="shared-submit" data-dismiss="modal">Create</button>
+                </div>
+            </div>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-          <button type="button" class="btn btn-primary" id="shared-submit" data-dismiss="modal">Create</button>
-        </div>
-      </div>
     </div>
-  </div>
 
 
-  <!-- --------- Upload File --------- -->
+    <!-- --------- Upload File --------- -->
 
-  <div class="modal fade" id="upload-file-dialog" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalCenterTitle">Upload File</h5>
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          <div class="select-file">
-            <input type="file" onclick="getFile()" id="upload-file" class="upload-file">
-          </div>
-          <br>
-          <div class="path">Upload to 
-            <select name="" id="select-dir" class="directory">
+    <div class="modal fade" id="upload-file-dialog" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Upload File</h5>
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="select-file">
+                        <input type="file" onclick="getFile()" id="upload-file" class="upload-file">
+                    </div>
+                    <br>
+                    <div class="path">Upload to
+                        <select name="" id="select-dir" class="directory">
               <option value="">Current</option>
               <option value="">C++</option>
               <option value="">Java</option>
             </select>
-          </div>
+                    </div>
 
-          <a href="" id="file-url"></a>
-          
+                    <a href="" id="file-url"></a>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" id="upload-btn">Upload</button>
+                </div>
+            </div>
         </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-          <button type="button" class="btn btn-primary" id="upload-btn">Upload</button>
-        </div>
-      </div>
     </div>
-  </div>
 
     <!-- --------- New Paste --------- -->
 
     <div class="modal wide fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-      <div class="modal-dialog" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle">New Paste</h5>
-            <button class="btn btn-primary" onclick="location.href ='/use/editor'" id="open-editor">Open Full Screen</button>
-          </div>
-          <div class="modal-body">
-            
-            <div class="container">
-              <div id="editor">
-                
-              </div>
-              <div class="path"> Language
-                <select name="" id="select-dir" class="directory">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">New Paste</h5>
+                    <button class="btn btn-primary" onclick="location.href ='/use/editor'" id="open-editor">Open Full Screen</button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="container">
+                        <div id="editor">
+
+                        </div>
+                        <div class="path"> Language
+                            <select name="" id="select-dir" class="directory">
                   <option value="">C</option>
                   <option value="">Java</option>
                   <option value="">Python</option>
                 </select>
-              </div>
-            </div> <br>
-            <p style="color: gray;">Uploads to current directory</p>
+                        </div>
+                    </div> <br>
+                    <p style="color: gray;">Uploads to current directory</p>
 
-          </div>
-          <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-            <button type="button" class="btn btn-primary">Save</button>
-          </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary">Save</button>
+                </div>
+            </div>
         </div>
-      </div>
     </div>
 
-  <!-- -------- Option Menu ---------- -->
-  <!-- <div class="dropdown-content" id="myDropdown">
+    <!-- -------- Option Menu ---------- -->
+    <!-- <div class="dropdown-content" id="myDropdown">
       <div class="texts">
         <p>Open</p>
         <p>Rename</p>
@@ -254,184 +262,177 @@
 
 </body>
 
-<script
-      src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.7/ace.js"
-      integrity="sha256-C7DTYRJLG+B/VEzHGeoPMw699nsTQYPAXHKXZb+q04E="
-      crossorigin="anonymous"
-    ></script>
-    <script>
-      var editor = ace.edit("editor");
-      editor.setTheme("ace/theme/github");
-      editor.session.setMode("ace/mode/javascript");
-      editor.setOptions({
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.7/ace.js" integrity="sha256-C7DTYRJLG+B/VEzHGeoPMw699nsTQYPAXHKXZb+q04E=" crossorigin="anonymous"></script>
+<script>
+    var editor = ace.edit("editor");
+    editor.setTheme("ace/theme/github");
+    editor.session.setMode("ace/mode/javascript");
+    editor.setOptions({
         fontSize: "12pt"
-      });
-    </script>
+    });
+</script>
 
 <script>
-  function getFile() {
-    var fileInput = document.getElementById('upload-file');
+    function getFile() {
+        var fileInput = document.getElementById('upload-file');
 
-		fileInput.addEventListener('change', function(e) {
-			var file = fileInput.files[0];
-			var textType = /text.*/;
+        fileInput.addEventListener('change', function(e) {
+            var file = fileInput.files[0];
+            var textType = /text.*/;
 
-			if (file.type.match(textType)) {
-				var reader = new FileReader();
-				reader.onload = function(e) {
-          document.getElementById('file-loc').value = reader.result;
-				}
+            if (file.type.match(textType)) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('file-loc').value = reader.result;
+                }
 
-				reader.readAsText(file);	
-			} else {
-				fileDisplayArea.innerText = "File not supported!"
-			}
-		});
-  }
+                reader.readAsText(file);
+            } else {
+                fileDisplayArea.innerText = "File not supported!"
+            }
+        });
+    }
 
-$( document ).ready(function() {
-    console.log( "ready!" );
+    $(document).ready(function() {
+        console.log("ready!");
 
-    $('#upload-btn').click( (e) => {
-      $('#file-form').submit();
-    })
+        $('#upload-btn').click((e) => {
+            $('#file-form').submit();
+        })
 
-    $('#span-close').click((e) => {
-      $('#left').hide()
-      $('#opener').show()
-    })
+        $('#span-close').click((e) => {
+            $('#left').hide()
+            $('#opener').show()
+        })
 
-    $('#opener').click((e) => {
-      $('#left').show()
-      $('#opener').hide()
-    })
+        $('#opener').click((e) => {
+            $('#left').show()
+            $('#opener').hide()
+        })
 
-    let emailNo = 0;
-    let recipents = [];
+        let emailNo = 0;
+        let recipents = [];
         $('#shared-email').on('keydown', function(event) {
-          const lastch = String.fromCharCode(event.keyCode);
-          if (lastch == ' ') {
-            emailNo++;
+            const lastch = String.fromCharCode(event.keyCode);
+            if (lastch == ' ') {
+                emailNo++;
 
-            const emailAddr = $('#shared-email').val();
-            $("#recipents-space").append('<p><a class="tag-like" href="#">'+emailAddr+'</a></p>');
-            $('#shared-email').val('');
-            recipents.push(emailAddr);
-            
-            if(emailNo == 2){
-            $('#shared-email').prop('disabled', true);
-          }
-          }
+                const emailAddr = $('#shared-email').val();
+                $("#recipents-space").append('<p><a class="tag-like" href="#">' + emailAddr + '</a></p>');
+                $('#shared-email').val('');
+                recipents.push(emailAddr);
+
+                if (emailNo == 2) {
+                    $('#shared-email').prop('disabled', true);
+                }
+            }
         });
 
         $('#clear-btn').click((e) => {
-          emailNo = 0;
-          $('#recipents-space').empty();
-          $('#shared-email').prop('disabled', false);
-          recipents = [];
+            emailNo = 0;
+            $('#recipents-space').empty();
+            $('#shared-email').prop('disabled', false);
+            recipents = [];
         });
 
         $('#shared-submit').click((e) => {
-          const folder_name = $('#shared-folder-name').val();
-          const parameters = {
-            'recipents': recipents,
-            'folderName': folder_name
-          };
-          console.log(folder_name)
-          $.post('/use/create_shared_directory', parameters).done((data, stat) => {})
+            const folder_name = $('#shared-folder-name').val();
+            const parameters = {
+                'recipents': recipents,
+                'folderName': folder_name
+            };
+            console.log(folder_name)
+            $.post('/use/create_shared_directory', parameters).done((data, stat) => {})
         });
 
-    $('.nav-link').click(function(e) {
-      let class_name = e.target.className;
-      if (class_name != 'nav-link active'){
-        document.getElementById('active').className = 'nav-link';
-        document.getElementById('active').id = 'inactive';
-        e.target.className = 'nav-link active';
-        e.target.id = 'active';
-      }
-      console.log();
+        $('.nav-link').click(function(e) {
+            let class_name = e.target.className;
+            if (class_name != 'nav-link active') {
+                document.getElementById('active').className = 'nav-link';
+                document.getElementById('active').id = 'inactive';
+                e.target.className = 'nav-link active';
+                e.target.id = 'active';
+            }
+            console.log();
+        });
+
+        $('#dir').click((e) => {
+            console.log('dir');
+            document.getElementById('loader').className = 'spinner';
+            setTimeout(function() {
+                document.getElementById('loader').className = 'loader';
+                document.getElementById('files').style.display = 'none';
+                document.getElementById('shared-dir').style.display = 'none';
+                document.getElementById('statistics').style.display = 'none';
+                document.getElementById('directories').style.display = 'grid';
+            }, 1005);
+        })
+
+        $('#file').click((e) => {
+            console.log('file');
+            document.getElementById('loader').className = 'spinner';
+            setTimeout(function() {
+                document.getElementById('loader').className = 'loader';
+                document.getElementById('directories').style.display = 'none';
+                document.getElementById('shared-dir').style.display = 'none';
+                document.getElementById('statistics').style.display = 'none';
+                document.getElementById('files').style.display = 'grid';
+            }, 1005);
+        })
+
+        $('#share-dir').click((e) => {
+            console.log('shared-dir');
+            document.getElementById('loader').className = 'spinner';
+            setTimeout(function() {
+                document.getElementById('loader').className = 'loader';
+                document.getElementById('directories').style.display = 'none';
+                document.getElementById('files').style.display = 'none';
+                document.getElementById('statistics').style.display = 'none';
+                document.getElementById('shared-dir').style.display = 'grid';
+            }, 1005);
+        })
+
+        $('#stat').click((e) => {
+            console.log('shared-dir');
+            document.getElementById('loader').className = 'spinner';
+            setTimeout(function() {
+                document.getElementById('loader').className = 'loader';
+                document.getElementById('directories').style.display = 'none';
+                document.getElementById('files').style.display = 'none';
+                document.getElementById('shared-dir').style.display = 'none';
+                document.getElementById('statistics').style.display = 'block';
+            }, 1005);
+        })
+
+        function load() {
+            document.getElementById('loader').className = 'spinner';
+            setTimeout(function() {
+                document.getElementById('loader').className = 'loader';;
+            }, 1005);
+        }
     });
 
-    $('#dir').click( (e) => {
-      console.log('dir');
-      document.getElementById('loader').className = 'spinner';
-      setTimeout(function(){ 
-          document.getElementById('loader').className = 'loader';
-          document.getElementById('files').style.display = 'none';
-          document.getElementById('shared-dir').style.display = 'none';
-          document.getElementById('statistics').style.display = 'none';
-          document.getElementById('directories').style.display = 'grid';
-        }, 1005);
-    })
-
-    $('#file').click( (e) => {
-      console.log('file');
-      document.getElementById('loader').className = 'spinner';
-      setTimeout(function(){ 
-          document.getElementById('loader').className = 'loader';
-          document.getElementById('directories').style.display = 'none';
-          document.getElementById('shared-dir').style.display = 'none';
-          document.getElementById('statistics').style.display = 'none';
-          document.getElementById('files').style.display = 'grid';
-        }, 1005);
-    })
-
-    $('#share-dir').click( (e) => {
-      console.log('shared-dir');
-      document.getElementById('loader').className = 'spinner';
-      setTimeout(function(){ 
-          document.getElementById('loader').className = 'loader';
-          document.getElementById('directories').style.display = 'none';
-          document.getElementById('files').style.display = 'none';
-          document.getElementById('statistics').style.display = 'none';
-          document.getElementById('shared-dir').style.display = 'grid';
-        }, 1005);
-    })
-
-    $('#stat').click( (e) => {
-      console.log('shared-dir');
-      document.getElementById('loader').className = 'spinner';
-      setTimeout(function(){ 
-          document.getElementById('loader').className = 'loader';
-          document.getElementById('directories').style.display = 'none';
-          document.getElementById('files').style.display = 'none';
-          document.getElementById('shared-dir').style.display = 'none';
-          document.getElementById('statistics').style.display = 'block';
-        }, 1005);
-    })
-
-    function load() {
-      document.getElementById('loader').className = 'spinner';
-      setTimeout(function(){ 
-        document.getElementById('loader').className = 'loader';; 
-        }, 1005);
+    function myFunction() {
+        document.getElementById("myDropdown").classList.toggle("show");
+        console.log('toggle');
     }
-});
 
-function myFunction() {
-  document.getElementById("myDropdown").classList.toggle("show");
-  console.log('toggle');
-}
-
-// Close the dropdown menu if the user clicks outside of it
-window.onclick = function(event) {
-  if (!event.target.matches('.dropbtn')) {
-    var dropdowns = document.getElementsByClassName("dropdown-content");
-    var i;
-    for (i = 0; i < dropdowns.length; i++) {
-      var openDropdown = dropdowns[i];
-      if (openDropdown.classList.contains('show')) {
-        openDropdown.classList.remove('show');
-      }
+    // Close the dropdown menu if the user clicks outside of it
+    window.onclick = function(event) {
+        if (!event.target.matches('.dropbtn')) {
+            var dropdowns = document.getElementsByClassName("dropdown-content");
+            var i;
+            for (i = 0; i < dropdowns.length; i++) {
+                var openDropdown = dropdowns[i];
+                if (openDropdown.classList.contains('show')) {
+                    openDropdown.classList.remove('show');
+                }
+            }
+        }
     }
-  }
-}
+</script>
 
-  </script>
-
-<script
-  src="https://code.jquery.com/jquery-3.4.1.js"
-  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-  crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
 </html>
