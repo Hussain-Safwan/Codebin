@@ -168,7 +168,7 @@ body {
 }
 
 .user-info .image {
-  margin-left: 10%;
+  margin-left: 15%;
   margin-top: 2%;
 }
 
@@ -176,10 +176,11 @@ body {
   height: 150px;
   width: 150px;
   border-radius: 50%;
+  border: 1px solid #ebe8e8;
 }
 
 .user-info .text {
-  margin-left: 2%;
+  margin-left: 1%;
 }
 
 .user-info .text .primary-info {
