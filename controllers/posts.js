@@ -71,10 +71,20 @@ module.exports.readFile = (req, res) => {
     });
 };
 
-module.exports.run_from_view = (req, res) => {
+module.exports.run_from_view = async(req, res) => {
     const source_code = req.body.source_code;
     const Language = req.body.language;
     var hackerEarth = require("hackerearth-node");
+
+    langMap = new Map()
+    langMap.set('cpp', 'C++')
+    langMap.set('java', 'Java')
+    langMap.set('py', 'Python')
+
+    const lang = langMap.get(Language)
+
+    const source_id = req.body.source_id
+    const sourceObj = await FileModel.findOne({ _id: source_id })
 
     var hackerEarth = new hackerEarth("392c70615809060562e8fa455c34aa3c57753a94");
     const clienSecret = "392c70615809060562e8fa455c34aa3c57753a94";
@@ -83,7 +93,7 @@ module.exports.run_from_view = (req, res) => {
     config.memory_limit = 323244;
     config.source = source_code;
     config.input = "";
-    config.language = Language;
+    config.language = lang;
     let output;
     hackerEarth
         .run(config)
@@ -93,12 +103,13 @@ module.exports.run_from_view = (req, res) => {
             if (parsedResult.compile_status != "OK") {
                 const err = "SyntaxError";
                 return res.render("codeview", {
-                    source_code: source_code,
+                    source_code: sourceObj,
                     run_result: err
                 });
             } else {
+                console.log(output)
                 return res.render("codeview", {
-                    source_code: source_code,
+                    source_code: sourceObj,
                     run_result: output
                 });
             }
@@ -214,8 +225,11 @@ module.exports.search = (req, res) => {
 
 module.exports.directory = async(req, res) => {
     const id = req.params.id
+    const dir = await DirectoryModel.findOne({ _id: id })
     const files = await FileModel.find({ parent: id })
+    const dirname = dir.name
     res.render('directory_view', {
+        name: dirname,
         file: files
     })
 }

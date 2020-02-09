@@ -6,6 +6,7 @@ const User = require('../models/user')
 router.get('/', async(req, res) => {
     if (!req.user) {
         res.render('login')
+        return
     }
     const directories = await DirectoryModel.find({ owner: req.user._id })
     const files = await FileModel.find()
@@ -14,7 +15,6 @@ router.get('/', async(req, res) => {
         dirs: directories,
         file: files
     })
-    res.send(directories)
 
 })
 

@@ -40,7 +40,7 @@ app.use('/', homeRoute)
 const routes = require('./routes/routes');
 app.use('/use', routes);
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3003;
 app.listen(PORT, function() {
     console.log("Listening to ", PORT);
 });
