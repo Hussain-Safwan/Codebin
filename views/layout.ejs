@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 </head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <link rel="stylesheet" href="/css/layout.css">
 <link rel="icon" href="/images/cb_logo.png">
 
@@ -19,6 +20,11 @@
         <div class="input-group" id="ig">
             <input type="text" class="form-control" id="search-input" placeholder="Press enter to search">
         </div>
+        <div class="logout">
+            <a href="/use/logout">
+                <img id="icon-img" src="" alt="">
+            </a>
+        </div>
     </nav>
     <form action="/use/search" method="POST" id="search-form">
         <input type="hidden" name="search" id="search">
@@ -29,7 +35,20 @@
     </div>
 
 </body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.7/ace.js" integrity="sha256-C7DTYRJLG+B/VEzHGeoPMw699nsTQYPAXHKXZb+q04E=" crossorigin="anonymous"></script>
 <script>
+    $.ajax({
+        url: '/use/get_image',
+        method: 'get'
+    }).done(res => {
+        console.log(res)
+        if (res == 'none') {
+            $('#icon-img').attr('src', 'https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSTRJxncjV2A5ciZwN4vVYyS-kX0PF88PtAH2dppQVnU-nx9O7B')
+        } else {
+            $('#icon-img').attr('src', 'https://robohash.org/' + res)
+        }
+    })
+
     $("#search-input").keypress(function(e) {
         const phrase = $('#search-input').val()
         if ((e.which == 10 || e.which == 13) && phrase != '') {

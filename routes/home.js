@@ -9,7 +9,7 @@ router.get('/', async(req, res) => {
         return
     }
     const directories = await DirectoryModel.find({ owner: req.user._id })
-    const files = await FileModel.find()
+    const files = await FileModel.find({ owner: req.user._id })
     res.render('dashboard', {
         user: req.user,
         dirs: directories,

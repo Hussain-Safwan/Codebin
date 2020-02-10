@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const controller = require('../controllers/posts');
-const { getLogin, getRegister, postLogin, postRegister } = require('../controllers/auth')
+const { getLogin, getRegister, postLogin, postRegister, getLogout } = require('../controllers/auth')
 const dir = require('../models/directory')
 
 //Auth
@@ -9,6 +9,7 @@ router.get('/login', getLogin)
 router.get('/register', getRegister)
 router.post('/login', postLogin)
 router.post('/register', postRegister)
+router.get('/logout', getLogout)
 
 //Posts
 router.get('/editor', controller.get_editor);
@@ -30,5 +31,14 @@ router.post('/new_paste', controller.new_paste)
 router.get('/getdirectories', async(req, res) => {
     const directories = await dir.find({ owner: req.user._id })
     res.send(directories)
+})
+
+router.get('/get_image', async(req, res) => {
+    if (req.user) {
+        const id = req.user._id
+        res.send(id)
+    } else {
+        res.send('none')
+    }
 })
 module.exports = router;

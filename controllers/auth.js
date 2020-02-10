@@ -36,3 +36,8 @@ module.exports.postRegister = async(req, res) => {
 
     res.redirect('/')
 }
+
+module.exports.getLogout = async(req, res) => {
+    req.logout()
+    res.redirect('/use/login')
+}
