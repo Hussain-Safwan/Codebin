@@ -49,7 +49,7 @@
             <form action="" id="score-form">
                 <input type="hidden" name="score" id="score">
             </form>
-
+            <a href="#" id="open-collab">Open in Collab</a>
             <div class="second-row">
                 <div class="about">About</div>
                 <div class="inside">
@@ -107,6 +107,9 @@
                         <%= source_code.fileContent %>
                     </div>
                     <input type="hidden" id="source" value="<%= source_code.fileContent %>">
+                    <form action="/use/openCollab" id="collab-form" method="POST">
+                        <input type="hidden" name="sourceCollab" value="<%= source_code.fileContent %>" id="sourceCollab">
+                    </form>
         </div>
     </div>
 
@@ -125,6 +128,10 @@
             editor.setOptions({
                 fontSize: "15pt"
             });
+
+            $('#open-collab').click((e) => {
+                $('#collab-form').submit()
+            })
 
             if ($(window).width() < 600) {
                 editor.setOptions({

@@ -263,7 +263,7 @@
                 <form action="/use/new_paste" id="paste-form" method="POST">
                     <div class="modal-header">
                         <input class="newpaste" type="text" id="name" name="name" value="New Paste">
-                        <button class="btn btn-primary" onclick="location.href ='/use/editor'" id="open-editor">Open Full Screen</button>
+                        <a href="/use/editor" class="btn btn-secondary" id="open-editor">Open Full Screen</a>
                     </div>
                     <div class="modal-body">
 
@@ -352,6 +352,10 @@
         editor.setOptions({
             fontSize: "12pt"
         });
+
+        $('#open-editor').click((e) => {
+            window.location = '/use/editor';
+        })
 
         $.ajax({
             url: '/use/getdirectories',

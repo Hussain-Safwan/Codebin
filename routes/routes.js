@@ -1,7 +1,10 @@
 const express = require("express");
 const router = express.Router();
+const axios = require('axios')
+const net = require('net')
 const controller = require('../controllers/posts');
 const { getLogin, getRegister, postLogin, postRegister, getLogout } = require('../controllers/auth')
+const { openCollab } = require('../collab')
 const dir = require('../models/directory')
 
 //Auth
@@ -27,7 +30,9 @@ router.post('/create_shared_directory', controller.create_shared_directory);
 router.post('/upload_file', controller.upload_file)
 router.post('/new_paste', controller.new_paste)
 
-//
+router.post('/openCollab', openCollab)
+
+//ajax routes
 router.get('/getdirectories', async(req, res) => {
     const directories = await dir.find({ owner: req.user._id })
     res.send(directories)
@@ -41,4 +46,5 @@ router.get('/get_image', async(req, res) => {
         res.send('none')
     }
 })
+
 module.exports = router;

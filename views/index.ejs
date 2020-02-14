@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="icon" href="http://codebinapp.herokuapp.com/images/cb_logo.png">
+    <title>Codebin Collab</title>
+
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
+
+    <style>
+        .header {
+            display: flex;
+            margin-top: 100px;
+        }
+        
+        img {
+            width: 50px;
+            height: 50px;
+        }
+        
+        .ad {
+            font-size: 15px;
+            margin-left: 0px;
+            color: gray;
+        }
+        
+        #editor {
+            margin-top: 20px;
+            height: 450px;
+            width: 100%;
+            border-radius: 5px;
+            border: 1px solid rgb(204, 204, 204);
+            padding: 10px;
+        }
+        
+        .flex {
+            margin-top: 30px;
+            text-align: center;
+            font-size: 30px;
+            color: gray;
+        }
+        
+        .live {
+            color: red;
+            font-weight: bold;
+        }
+        
+        textarea {
+            font-size: 18px;
+            font-weight: bold;
+        }
+        
+        .trigger {
+            float: right;
+            border-radius: 20px;
+            border: 1px solid #eee;
+            background-color: #fff;
+            padding: 10px;
+            margin-top: 20px;
+        }
+        /* .msgArea {
+        display: none;
+      } */
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="msgArea" id="msgArea">
+
+            <div class="row">
+                <!-- <div class="col-md-4"> -->
+                <div class="header">
+                    <img src="http://codebinapp.herokuapp.com/images/cb_logo.png" alt="">
+                    <h3>Codebin Collab <span class="ad">Go slow, it's unpaid</span> </h3>
+                </div>
+                <!-- </div> -->
+                <input type="hidden" name="" id="source" value="<%= dbSource %>">
+                <!-- <div class="well" id="editor">
+                    <%= dbSource %>
+                </div> -->
+                <textarea name="" id="editor" cols="30" rows="10"></textarea>
+            </div>
+            <span class="ad" id="flush"></span>
+
+            <select name="trigger" id="trigger" class="trigger">
+          <option value="letter">Letter</option>
+          <option value="word">Word</option>
+          <option value="sentence">Sentence</option>
+        </select>
+
+            <div class="flex">real time, for real niggas </div>
+        </div>
+
+    </div>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.7/ace.js" integrity="sha256-C7DTYRJLG+B/VEzHGeoPMw699nsTQYPAXHKXZb+q04E=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js" integrity="sha256-bQmrZe4yPnQrLTY+1gYylfNMBuGfnT/HKsCGX+9Xuqo=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+<script>
+    $(document).ready(() => {
+        // var editor = ace.edit("editor");
+        // editor.setTheme("ace/theme/github");
+        // editor.session.setMode("ace/mode/javascript");
+        // editor.setOptions({
+        //     fontSize: "15pt"
+        // });
+        // editor.setBehavioursEnabled(false);
+        const socket = io.connect();
+        let $msg = $("#msg");
+        const Source = $('#source').val()
+        $('#editor').val(Source)
+
+        let globalTrigger = $('#trig').val()
+        $('#flush').html(globalTrigger)
+
+        socket.on("new message", data => {
+            // const curPos = editor.getCursorPositionScreen()
+            // editor.setValue(data.msg, curPos.row);
+            // editor.clearSelection();
+            $('#editor').val(data.msg)
+        });
+
+        socket.on('trigger change', data => {
+            const trig = data.trig
+            globalTrigger = trig
+            $('#flush').html(trig)
+        })
+
+        $('#trigger').click((e) => {
+            const trigger = $('#trigger').val()
+            socket.emit('trigger change', trigger)
+        })
+
+        $('#editor').keypress((e) => {
+            const editor = $('#editor')
+            var keycode = e.which;
+            setTimeout(() => {
+                if (keycode == 32 || keycode == 13) {
+                    const source = editor.val();
+                    socket.emit("send message", source);
+                    console.log('trig')
+                }
+                if (keycode == 13) {
+                    const source = editor.val();
+                    socket.emit("send message", source);
+                }
+            }, 500)
+
+        });
+    });
+</script>
+
+</html>

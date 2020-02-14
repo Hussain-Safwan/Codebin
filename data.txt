@@ -1,0 +1,125 @@
+import queue
+import copy
+
+class node:
+	def __init__(self, state, parent, moves):
+		self.state = state
+		self.parent = parent
+		self.moves = moves
+
+def swap(mat, i1, j1, i2, j2):
+	mat[i1][j1], mat[i2][j2] = mat[i2][j2], mat[i1][j1]
+	return mat
+
+def clone(mat):
+  temp = []
+  for i in mat:
+    temp.append(i)
+  return temp
+
+def Up(mat, i, j):
+	temp = copy.deepcopy(mat)
+	if i == 0:
+		return -1
+	else:
+		return swap(temp, i, j, i-1, j)
+
+def Down(mat, i, j):
+	temp = copy.deepcopy(mat)
+	l = len(mat)
+	if i == l-1:
+		return -1
+	else:
+		return swap(temp, i, j, i+1, j)
+
+def Right(mat, i, j):
+	temp = copy.deepcopy(mat)
+	l = len(mat)
+	if j == l-1:
+		return -1
+	else:
+		return swap(temp, i, j, i, j+1)
+
+def Left(mat, i, j):
+	temp = copy.deepcopy(mat)
+	if j == 0:
+		return -1
+	else:
+		return swap(temp, i, j, i, j-1)
+
+def find(mat):
+	for i in range(len(mat)):
+		for j in range(len(mat)):
+			if mat[i][j] == 0:
+				return (i, j)
+
+def main():
+	# board = [[1, 5, 3],
+	# 				 [0, 8, 9],
+	# 				 [7, 6, 4]]
+
+	board = [[0, 8, 7],
+					[6, 5, 4],
+					[3, 2, 1]]
+	goal = [[1, 2, 3],
+					[4, 5, 6],
+					[7, 8, 0]]
+
+	q = queue.Queue()
+	node1 = node(board, -1, 0)
+	vis = []
+	q.put(node1)
+	vis.append(node1.state)
+	moves = 0
+	
+	while True:
+		if q.empty():
+			print('not found')
+			return
+
+		moves += 1
+		new_node = q.get()
+		(x, y) = find(new_node.state)
+		a = new_node.state
+		b = goal
+		# print(moves, Up(new_node.state, x, y), Up(new_node.state, x, y) in vis)
+		print(moves)
+		if a == b:
+			print('found!')
+			return
+
+		up = Up(new_node.state, x, y)
+		down = Down(new_node.state, x, y)
+		right = Right(new_node.state, x, y)
+		left = Left(new_node.state, x, y)
+
+		if  up != -1 and up not in vis:
+			# print('found!')
+
+			adjNode = node (up, new_node.state, moves)
+			vis.append(up)
+			q.put(adjNode)
+
+		if down != -1 and down not in vis:
+			# print('found!')
+
+			adjNode = node (down, new_node.state, moves)
+			vis.append(down)
+			q.put(adjNode)
+
+		if right != -1 and right not in vis:
+			# print('found!')
+
+			adjNode = node (right, new_node.state, moves)
+			vis.append(right)
+			q.put(adjNode)
+
+		if left != -1 and left not in vis:
+			# print('found!')
+
+			adjNode = node (left, new_node.state, moves)
+			vis.append(left)
+			q.put(adjNode)
+		
+
+main()
