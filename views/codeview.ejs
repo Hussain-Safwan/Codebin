@@ -20,19 +20,19 @@
             <div class="first-row">
                 <div class="f-left">
                     <div class="image">
-                        <img src="https://avatars1.githubusercontent.com/u/32009766?s=460&v=4" alt="">
+                        <a href="/use/get_user/<%= source_code.owner %>"><img src="https://robohash.org/<%= source_code.owner %>" alt=""></a>
                     </div>
                     <div class="non-image">
-                        Hussain Md Safwan
-                        <div class="date-size">
-                            <p class="date">
-                                <%= source_code.createdAt %>
-                            </p>
-                            &#8226
-                            <p class="size">
-                                <%= source_code.filesize %> KB
-                            </p>
-                        </div>
+                        <%= source_code.ownerName %>
+                            <div class="date-size">
+                                <p class="date">
+                                    <%= source_code.createdAt %>
+                                </p>
+                                &#8226
+                                <p class="size">
+                                    <%= source_code.filesize %> KB
+                                </p>
+                            </div>
                     </div>
                 </div>
                 <div class="f-right">
@@ -49,7 +49,6 @@
             <form action="" id="score-form">
                 <input type="hidden" name="score" id="score">
             </form>
-            <a href="#" id="open-collab">Open in Collab</a>
             <div class="second-row">
                 <div class="about">About</div>
                 <div class="inside">
@@ -96,7 +95,8 @@
                             <%= source_code.filename %>
                         </p>
                         <div class="right-icons">
-                            <a href="#" id="copy-btn"><i class="far fa-clone"></i></a>
+                            <a href="http://codebincollab.herokuapp.com/" target="_blank" title="Open in Collab"><i class="fas fa-users"></i></a>
+                            <a href="#" id="open-collab"><i class="far fa-clone"></i></a>
                             <a href="#"><i class="fas fa-pen-square"></i></a>
                             <a href="#"><i class="fas fa-share-alt"></i></a>
                             <a href="#"><i class="fas fa-retweet"></i></a>

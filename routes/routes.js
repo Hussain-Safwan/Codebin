@@ -16,6 +16,7 @@ router.get('/logout', getLogout)
 
 //Posts
 router.get('/editor', controller.get_editor);
+router.get('/get_user/:id', controller.get_user);
 router.get('/codeview/:id', controller.codeview);
 router.get('/directory/:id', controller.directory)
 router.post('/search', controller.search)

@@ -17,7 +17,16 @@ var FileModel = mongoose.Schema({
     owner: {
         type: String
     },
+    ownerName: {
+        type: String
+    },
+    tags: {
+        type: [String]
+    },
     parent: {
+        type: String
+    },
+    parentName: {
         type: String
     },
     origin: {

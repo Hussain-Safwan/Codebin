@@ -7,18 +7,36 @@ const nodemailer = require('nodemailer');
 
 const DirectoryModel = require('../models/directory')
 const FileModel = require('../models/file')
+const UserModel = require('../models/user')
+
+module.exports.get_user = async(req, res) => {
+    const id = req.params.id
+    const remoteUser = await UserModel.findOne({ _id: id })
+    const remoteFiles = await FileModel.find({ owner: id })
+    const remoteDirs = await DirectoryModel.find({ owner: id })
+    res.render('dashboard', {
+        user: remoteUser,
+        dirs: remoteDirs,
+        file: remoteFiles
+    })
+}
 
 module.exports.get_editor = (req, res) => {
-    return res.render("editor", {
-        previousCode: "//Codebin Editor",
-        run_result: ""
-    });
+    if (req.user) {
+        return res.render("editor", {
+            previousCode: "//Codebin Editor",
+            run_result: ""
+        });
+    } else {
+        res.redirect('/use/login')
+    }
+
 };
 
 module.exports.codeview = async(req, res) => {
     const id = req.params.id
-        // console.log('id: ', id)
     const code = await FileModel.findOne({ _id: id })
+
     return res.render("codeview", {
         source_code: code,
         run_result: " "
@@ -26,7 +44,7 @@ module.exports.codeview = async(req, res) => {
 };
 
 module.exports.run_code = (req, res) => {
-    const source_code = req.body.source_code;
+    const source_code = req.body.fileContent;
     const Language = req.body.language;
     var hackerEarth = require("hackerearth-node");
 
@@ -179,21 +197,29 @@ function sendMail(rec) {
 }
 
 module.exports.upload_file = async(req, res) => {
+    if (!req.user) {
+        res.redirect('/use/login')
+    }
     const {
         filename,
         fileext,
         filesize,
         fileContent,
-        parent
+        parent,
+        Tags
     } = req.body
+    const tags = Tags.split(' ')
     const origin = 'file'
     const owner = req.user._id
+    const ownerName = req.user.name
     newFile = await new FileModel({
         filename,
         fileext,
         filesize,
         fileContent,
+        tags,
         owner,
+        ownerName,
         parent,
         origin
     }).save()
@@ -202,25 +228,92 @@ module.exports.upload_file = async(req, res) => {
     res.redirect('/')
 }
 
+function byteLength(str) {
+    var s = str.length;
+    for (var i = str.length - 1; i >= 0; i--) {
+        var code = str.charCodeAt(i);
+        if (code > 0x7f && code <= 0x7ff) s++;
+        else if (code > 0x7ff && code <= 0xffff) s += 2;
+        if (code >= 0xDC00 && code <= 0xDFFF) i--; //trail surrogate
+    }
+    return s;
+}
+
 module.exports.new_paste = async(req, res) => {
-    const fileext = req.body.language
+    if (!req.user) {
+        res.redirect('/use/login')
+    }
+    let fileext = req.body.language
+    const ownerName = req.user.name
+    const owner = req.user._id
     const filename = req.body.name + '.' + fileext
     const fileContent = req.body.fileContent
+    const parent = req.body.parent
+    const filesize = Math.ceil(byteLength(fileContent) / 1000)
     const origin = 'paste'
-
+    const Tags = req.body.tags
+    const tags = Tags.split('#')
+    console.log(parent)
+    langMap = new Map()
+    langMap.set('c', 'C')
+    langMap.set('cpp', 'C++')
+    langMap.set('java', 'Java')
+    langMap.set('py', 'Python')
+    langMap.set('js', 'Javascript')
+    fileext = langMap.get(fileext)
     const newFile = await new FileModel({
         filename,
         fileext,
         fileContent,
-        origin
+        parent,
+        ownerName,
+        owner,
+        filesize,
+        origin,
+        tags
     }).save()
 
-    res.redirect('/')
+    res.redirect('/use/editor')
 }
 
-module.exports.search = (req, res) => {
-    const phrase = req.body.search
-    return res.render('search')
+function getTags(obj) {
+    tags = obj.tags.split('#')
+    return tags
+}
+
+module.exports.search = async(req, res) => {
+    const phrase = (req.body.search).toLowerCase()
+    const files = await FileModel.find()
+    const directories = await DirectoryModel.find()
+
+    let filteredFiles = []
+    let filteredDirs = []
+    let allTags = new Array()
+
+    for (let i = 0; i < files.length; i++) {
+        if ((files[i].filename).toLowerCase().includes(phrase)) {
+            filteredFiles.push(files[i])
+        }
+    }
+    for (let i = 0; i < files.length; i++) {
+        const tags = files[i].tags
+        for (let j = 0; j < tags.length; j++) {
+            if (tags[j].includes(phrase) && !filteredFiles.includes(files[i])) {
+                filteredFiles.push(files[i])
+            }
+        }
+    }
+
+    for (let i = 0; i < directories.length; i++) {
+        if ((directories[i].name).toLowerCase().includes(phrase)) {
+            filteredDirs.push(directories[i])
+        }
+    }
+
+    return res.render('search', {
+        files: filteredFiles,
+        directories: filteredDirs
+    })
 }
 
 module.exports.directory = async(req, res) => {

@@ -1,167 +1,191 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <title>Codebin • Editor</title>
-    <link
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
-      crossorigin="anonymous"
-    />
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous" />
     <link rel="stylesheet" href="/fontawesome-free-5.12.0-web/css/all.css" />
     <link rel="stylesheet" href="/css/editor.css" />
-  </head>
-  <body>
+</head>
+
+<body>
     <form action="/use/run" id="run-form" method="POST">
-      <input type="hidden" name="source_code" id="source-code" value='code'/>
-      <input type="hidden" name="language" id="language" />
+        <input type="hidden" name="fileContent" id="source-code" value="code" />
+        <input type="hidden" name="language" id="language" />
+        <input type="hidden" name="name" id="name" />
+        <input type="hidden" name="tags" id="tagInput" />
+        <input type="hidden" name="parent" id="parent">
     </form>
     <div class="content">
-      <div class="left">
-        <div class="editor" id="editor">
-          <%= previousCode %>
-        </div>
-        <!-- <div class="alert alert-danger" role="alert">
+        <div class="left">
+            <div class="editor" id="editor">
+                <input type="hidden" name="source_code" id="source_code" />
+                <%= previousCode %>
+            </div>
+            <!-- <div class="alert alert-danger" role="alert">
           <strong>Compilation Error </strong>
           Code not executed due to a syntax error at line 8
         </div> -->
 
-        <div class="input-box">
-          <strong>Input</strong>
-          <textarea
-            name="input-area"
-            id="input-area"
-            class="input-area"
-            cols="30"
-            rows="5"
-          ></textarea>
-        </div>
-
-        <div class="output-box">
-          <strong>Output</strong>
-          <div class="output-area">
-
-            <p class="op"><%= run_result %></p>
-            
-          </div>
-        </div>
-      </div>
-      <div class="right">
-        <div class="options-box">
-          <hr />
-          <strong>Options</strong>
-          <hr />
-          <br />
-          <div class="name">
-            Save as
-            <input type="text" id="save-as">
-          </div>
-          <br>  
-          <div class="language-selector">
-            Language
-            <select name="" id="lang">
-              <option value="C">C</option>
-              <option value="C++">C++</option>
-              <option value="Java">Java</option>
-              <option value="Python">Python</option>
-            </select>
-          </div>
-          <br>
-          <div class="dir-selector">
-            Directory
-            <select name="" id="dir-select">
-              <option value="C Codes">C Codes</option>
-              <option value="Java">Java</option>
-              <option value="CSE 1201">CSE 1201</option>
-              <option value="New Sem">New Sem</option>
-            </select>
-          </div>
-          <br>
-          <div class="location">
-            Location
-            <div class="loca">
-              <p id="loca-dir"></p>
-              <p>/</p>
-              <p id="loca-name"></p>
-              <p>.</p>
-              <p id="ext"></p>
+            <div class="input-box">
+                <strong>Input</strong>
+                <textarea name="input-area" id="input-area" class="input-area" cols="30" rows="5"></textarea>
             </div>
-          </div>
-          <br>
-          <div class="tags">
-            Tags <a href="#"><i class="far fa-question-circle"></i></a> 
-            <a href="#"><i id="clear-btn" title="Clear tags" class="far fa-times-circle"></i></a> 
-            <input type="text" class="tag" id="tag" placeholder="Space separated, with a maximum of 4" />
-            <div class="tag-space" id="tag-space">
+
+            <div class="output-box">
+                <strong>Output</strong>
+                <div class="output-area">
+                    <p class="op">
+                        <%= run_result %>
+                    </p>
+                </div>
             </div>
-          </div>  
-          <br />
-          <div class="btns">
-            <button class="btn btn-primary" id="run-btn"><strong>Run</strong></button>
-            <button class="btn btn-primary" id="paste-btn"><strong>Paste!</strong></button>
-          </div>
         </div>
-      </div>
+        <div class="right">
+            <div class="options-box">
+                <hr />
+                <strong>Options</strong>
+                <hr />
+                <br />
+                <div class="name">
+                    Save as
+                    <input type="text" name="filename" id="save-as" />
+                </div>
+                <br />
+                <div class="language-selector">
+                    Language
+                    <input type="hidden" name="language" id="language" />
+                    <select name="" id="lang">
+              <option value="c">C</option>
+              <option value="cpp">C++</option>
+              <option value="java">Java</option>
+              <option value="py">Python</option>
+              <option value="js">Javascript</option>
+            </select>
+                </div>
+                <br />
+                <div class="dir-selector">
+                    Directory
+                    <select name="" id="dir-select">
+                    </select>
+                </div>
+                <br />
+                <div class="location">
+                    Location
+                    <div class="loca">
+                        <p id="loca-dir"></p>
+                        <p>/</p>
+                        <p id="loca-name"></p>
+                        <p>.</p>
+                        <p id="ext"></p>
+                    </div>
+                </div>
+                <br />
+                <div class="tags">
+                    Tags <a href="#"><i class="far fa-question-circle"></i></a>
+                    <a href="#"><i
+                id="clear-btn"
+                title="Clear tags"
+                class="far fa-times-circle"
+              ></i
+            ></a>
+                    <input type="text" class="tag" id="tag" placeholder="Space separated, with a maximum of 4" />
+                    <div class="tag-space" id="tag-space"></div>
+                </div>
+                <br />
+                <div class="btns">
+                    <button class="btn btn-primary" id="run-btn">
+              <strong>Run</strong>
+            </button>
+                    <button class="btn btn-primary" id="paste-btn">
+              <strong>Paste!</strong>
+            </button>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.7/ace.js"
-      integrity="sha256-C7DTYRJLG+B/VEzHGeoPMw699nsTQYPAXHKXZb+q04E="
-      crossorigin="anonymous"
-    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.7/ace.js" integrity="sha256-C7DTYRJLG+B/VEzHGeoPMw699nsTQYPAXHKXZb+q04E=" crossorigin="anonymous"></script>
     <script></script>
 
     <script>
-      $(document).ready(function() {
-        console.log("ready!");
-        var editor = ace.edit("editor");
-        editor.setTheme("ace/theme/github");
-        editor.session.setMode("ace/mode/javascript");
-        editor.setOptions({
-          fontSize: "15pt"
-        });
-        let tagNo = 0;
-        $('#tag').on('keydown', function(event) {
-          const lastch = String.fromCharCode(event.keyCode);
-          if (lastch == ' ') {
-            tagNo++;
+        $(document).ready(function() {
+            console.log("ready!");
+            var editor = ace.edit("editor");
+            editor.setTheme("ace/theme/github");
+            editor.session.setMode("ace/mode/javascript");
+            editor.setOptions({
+                fontSize: "15pt"
+            });
 
-            const tag = $('#tag').val();
-            $("#tag-space").append('<a href="#">'+tag+'</a>');
-            $('#tag').val('');
-            
-            if(tagNo == 4){
-            $('#tag').prop('disabled', true);
-          }
-          }
+            $.ajax({
+                url: "/use/getdirectories",
+                method: "get"
+            }).done(res => {
+                for (i = 0; i < res.length; i++) {
+                    $("#dir-select").append(
+                        `<option value="${res[i]._id}"> ${res[i].name} </option>`
+                    );
+                }
+            });
+
+            $("#paste-btn").click(e => {
+                $("#name").val($("#save-as").val());
+                $("#language").val($("#lang").val());
+                $('#parent').val($('#dir-select').val())
+                $("#source-code").val(editor.getValue());
+                $("#tagInput").val(tags);
+                $("#run-form").attr("action", "/use/new_paste");
+                console.log('parent ', $('#parent').val())
+                $("#run-form").submit();
+            });
+
+            let tagNo = 0;
+            let tags = "";
+            $("#tag").on("keydown", function(event) {
+                const lastch = String.fromCharCode(event.keyCode);
+                if (lastch == " ") {
+                    tagNo++;
+                    tags +=
+                        $("#tag")
+                        .val()
+                        .trim() + "#";
+                    $("#tag-space").append('<a href="#">' + $("#tag").val() + "</a>");
+                    $("#tag").val("");
+
+                    if (tagNo == 4) {
+                        $("#tag").prop("disabled", true);
+                    }
+                }
+            });
+            $("#clear-btn").click(e => {
+                tagNo = 0;
+                $("#tag-space").empty();
+                $("#tag").prop("disabled", false);
+            });
+            $("#run-btn").click(e => {
+                const source_code = editor.getValue();
+                const language = $("#lang").val();
+                $("#source-code").val(source_code);
+                $("#language").val(language);
+                console.log($("#source-code").val());
+                $("#run-form").submit();
+            });
+            $("#save-as").on("input", () => {
+                const name = $("#save-as").val();
+                $("#loca-name").html(name);
+            });
+            $("#dir-select").on("change", () => {
+                const dir_name = $("#dir-select").val();
+                $("#loca-dir").html(dir_name);
+            });
+            $("#lang").on("change", () => {
+                const ext = $("#lang").val();
+                $("#ext").html(ext);
+            });
         });
-        $('#clear-btn').click((e) => {
-          tagNo = 0;
-          $('#tag-space').empty();
-          $('#tag').prop('disabled', false);
-        })
-        $("#run-btn").click(e => {
-          const source_code = editor.getValue();
-          const language = $('#lang').val();
-          $('#source-code').val(source_code);
-          $('#language').val(language);
-          console.log($('#source-code').val());
-          $('#run-form').submit();
-        });
-        $('#save-as').on('input', () => {
-          const name = $('#save-as').val();
-          $('#loca-name').html(name);
-        });
-        $('#dir-select').on('change', () => {
-          const dir_name = $('#dir-select').val();
-          $('#loca-dir').html(dir_name);
-        });
-        $('#lang').on('change', () => {
-          const ext = $('#lang').val();
-          $('#ext').html(ext);
-        });
-      });
     </script>
-  </body>
+</body>
+
 </html>
