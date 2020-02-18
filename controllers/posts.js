@@ -6,6 +6,7 @@ const request = require("request");
 const nodemailer = require('nodemailer');
 
 const DirectoryModel = require('../models/directory')
+const SharedDirectoryModel = require('../models/shared_directory')
 const FileModel = require('../models/file')
 const UserModel = require('../models/user')
 
@@ -158,17 +159,32 @@ module.exports.create_directory = async(req, res) => {
     res.redirect('back')
 }
 
-module.exports.create_shared_directory = (req, res) => {
-    const folderName = req.body.folderName;
-    const reciepents = req.body.recipents;
+module.exports.create_shared_directory = async(req, res) => {
+    if (!req.user) {
+        res.redirect('/use/login')
+    }
+    const name = req.body.folderName;
+    const collaborators = req.body.recipents
+    const owner = req.user._id
+    const ownerName = req.user.name
+
+    const newSharedDir = await new SharedDirectoryModel({
+        name,
+        collaborators,
+        owner,
+        ownerName
+    }).save()
+
+    const id = newSharedDir._id
+
     for (let i = 0; i < 2; i++) {
-        let rec = reciepents[i].trim();
-        sendMail(rec);
+        let rec = collaborators[i].trim();
+        sendMail(rec, req, id);
     }
     return res.redirect('back');
 };
 
-function sendMail(rec) {
+function sendMail(rec, req, id) {
     var Transport = nodemailer.createTransport({
         service: "Gmail",
         auth: {
@@ -183,7 +199,7 @@ function sendMail(rec) {
         from: sender,
         to: rec,
         subject: "Shared directory invite",
-        html: `<strong>Hussain Md Safwan</strong> has created a shared directory and added you as collaborator.<br> Click <a href="#">here</a> to access the directory.<br><br> Good day!`
+        html: `<strong>${req.user.name}</strong> has created a shared directory and added you as collaborator.<br> Click <a href="http://localhost:3003/use/shared_dir/${id}">here</a> to access the directory.<br><br> Good day!`
     };
     console.log(mailOptions);
 
@@ -191,7 +207,7 @@ function sendMail(rec) {
         if (error) {
             console.log(error);
         } else {
-            console.log("Message sent: " + response);
+            console.log("Message sent")
         }
     });
 }
@@ -322,6 +338,20 @@ module.exports.directory = async(req, res) => {
     const files = await FileModel.find({ parent: id })
     const dirname = dir.name
     res.render('directory_view', {
+        name: dirname,
+        file: files
+    })
+}
+
+module.exports.shared_dir = async(req, res) => {
+    if (!req.user) {
+        res.redirect('/use/login')
+    }
+    const id = req.params.id
+    const dir = await SharedDirectoryModel.findOne({ _id: id })
+    const files = await FileModel.find({ parent: id })
+    const dirname = dir.name
+    res.render('shared_directory_view', {
         name: dirname,
         file: files
     })

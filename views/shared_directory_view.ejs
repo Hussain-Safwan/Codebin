@@ -5,13 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>
-        <%= user.name %>'s Dashboard • Codebin</title>
+    <title>CPP Folder • Codebin</title>
     <link rel="stylesheet" href="/css/folder.css">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="/fontawesome-free-5.12.0-web/css/all.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="/css/dashboard.css">
+    <link rel="stylesheet" href="/css/directory_view.css">
+
 </head>
 
 <body>
@@ -28,21 +28,22 @@
 
     <div class="user-info">
         <div class="image" id="user-image">
-            <img src="https://robohash.org/<%= user._id %>.png">
-            <!-- <img src="https://avatars1.githubusercontent.com/u/32009766?s=460&v=4" alt=""> -->
+            <img src="https://avatars1.githubusercontent.com/u/32009766?s=460&v=4" alt="">
         </div>
         <div class="text">
             <div class="primary-info">
-                <strong><%= user.name %></strong>
-                <p class="organization">@
-                    <%= user.username %>
-                </p>
-                <!-- <p class="location"><i class="fas fa-map-marker-alt"></i> Dhaka, Bangladesh</p> -->
+                <strong>Hussain Md Safwan</strong>
+                <p class="organization">University of Dhaka</p>
+                <p class="location"><i class="fas fa-map-marker-alt"></i> Dhaka, Bangladesh</p>
             </div>
         </div>
     </div>
 
     <hr>
+
+    <form action="/use/readfile" id="file-form" method="POST">
+        <input type="hidden" name="fileContent" id="file-loc">
+    </form>
 
     <div class="lower">
         <div class="opener" id="opener"><a href="#"><i class="fas fa-bars"></i></a></div>
@@ -57,70 +58,36 @@
                     <a href="#" data-toggle="modal" data-target="#upload-file-dialog"> <pre><i class="fas fa-file-code"></i>   Upload File</pre> </a>
                     <a href="#" data-toggle="modal" data-target="#exampleModalLong"> <pre><i class="fas fa-paste"></i>   New Paste</pre> </a>
                     <a href="#"> <pre><i class="fas fa-user-edit"></i>   Edit Profile</pre> </a>
-                    <a href="#"> <pre><i class="fas fa-cog"></i>  Preferences</pre> </a>
+                    <a href="#"> <pre><i class="fas fa-cog"></i></i>   Preferences</pre> </a>
                 </div>
             </div>
         </div>
         <div class="right">
-            <ul class="nav nav-tabs">
-                <li class="nav-item" id="dir">
-                    <a class="nav-link active" id="active" href="#">Directories <span class="badge badge-pill badge-secondary">10</span>
-          </a>
-                </li>
-                <li class="nav-item" id="file">
-                    <a class="nav-link" href="#">Files </a>
-                </li>
-                <li class="nav-item" id="share-dir">
-                    <a class="nav-link" href="#">Shared <span class="badge badge-pill badge-secondary">3</span></a>
-                </li>
-                <li class="nav-item" id="stat">
-                    <a class="nav-link" href="#">Statistics</a>
-                </li>
-            </ul>
+
+            <div class="header">
+                <div class="dir-name"> <a href="/"><i id="back-arrow" class="fas fa-arrow-left"></i></a>
+                    <p>
+                        <%= name %>
+                    </p>
+                </div>
+                <div class="options">
+                    <a href="#"><i class="fas fa-pen-square"></i></a>
+                    <a href="#"><i class="fas fa-share-alt"></i></a>
+                    <a href="#"><i class="far fa-trash-alt"></i></a>
+                </div>
+            </div>
 
             <div class="data-space">
 
                 <div class="directories" id="directories">
-                    <% for (var i=0; i<dirs.length; i++) { %>
-                        <a href="/use/directory/<%= dirs[i]._id %>">
-                            <div class="box">
-                                <div class="logo-area">
-                                    <i class="fas fa-folder"></i> </div>
-                                <div class="footer">
-                                    <p class="folder-title">
-                                        <%= dirs[i].name %>
-                                    </p>
-                                </div>
-                            </div>
-                        </a>
-                        <% } %>
-                </div>
-
-                <div class="files" id="files">
                     <% for (var i=0; i<file.length; i++) { %>
                         <a href="/use/codeview/<%= file[i]._id %>">
                             <div class="box">
                                 <div class="logo-area">
-                                    <i class="fas fa-file-code"></i> </div>
+                                    <i class="fas fa-file"></i> </div>
                                 <div class="footer">
                                     <p class="folder-title">
                                         <%= file[i].filename %>
-                                    </p>
-                                </div>
-                            </div>
-                        </a>
-                        <% } %>
-                </div>
-
-                <div class="shared-dir" id="shared-dir">
-                    <% for (var i=0; i<shared.length; i++) { %>
-                        <a href="/use/shared_dir/<%= shared[i]._id %>">
-                            <div class="box">
-                                <div class="logo-area">
-                                    <i class="fas fa-share-square"></i> </div>
-                                <div class="footer">
-                                    <p class="folder-title">
-                                        <%= shared[i].name %>
                                     </p>
                                 </div>
                             </div>
@@ -148,26 +115,23 @@
                 </div>
                 <div class="modal-body">
 
-                    <form action="/use/create_directory" id="create-folder-form" method="POST">
-                        <div class="name">
-                            <p class="n">Name </p>
-                            <input type="text" name="name" class="folder-name-input">
-                        </div>
-                        <br>
-                        <div class="audience">
-                            <input type="hidden" name="visibility" id="visibility">
-                            <p class="aud">Visibility </p>
-                            <select name="" id="select-aud" class="select-aud">
-                            <option value="public">Public</option>
-                            <option value="private">Private</option>
-                          </select>
-                        </div>
-                    </form>
+                    <div class="name">
+                        <p class="n">Name </p>
+                        <input type="text" class="folder-name-input">
+                    </div>
+                    <br>
+                    <div class="audience">
+                        <p class="aud">Visibility </p>
+                        <select name="" id="select-aud" class="select-aud">
+              <option value="public">Public</option>
+              <option value="private">Private</option>
+            </select>
+                    </div>
 
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    <button type="button" id="create-folder-btn" class="btn btn-primary">Create</button>
+                    <button type="button" class="btn btn-primary">Create</button>
                 </div>
             </div>
         </div>
@@ -231,25 +195,19 @@
                 </div>
                 <div class="modal-body">
                     <div class="select-file">
-                        <form action="/use/upload_file" id="file-upload-form" method="POST">
-                            <input type="file" onclick="getFile()" id="upload-file" class="upload-file">
+                        <input type="file" onclick="getFile()" id="upload-file" class="upload-file">
                     </div>
                     <br>
-                    <input type="hidden" name="fileContent" id="fileContent">
-                    <input type="hidden" name="filename" id="filename">
-                    <input type="hidden" name="fileext" id="fileext">
-                    <input type="hidden" name="filesize" id="filesize">
-                    <input type="hidden" name="parent" id="parent">
                     <div class="path">Upload to
-                        <select name="" id="select-dir-upload" class="directory">
-                            
-                        </select>
-                    </div>
-                    <div class="tags">
-                        Tags <input type="text" id="Tags" name="Tags">
+                        <select name="" id="select-dir" class="directory">
+              <option value="">Current</option>
+              <option value="">C++</option>
+              <option value="">Java</option>
+            </select>
                     </div>
 
-                    </form>
+                    <a href="" id="file-url"></a>
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
@@ -264,35 +222,30 @@
     <div class="modal wide fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <form action="/use/new_paste" id="paste-form" method="POST">
-                    <div class="modal-header">
-                        <input class="newpaste" type="text" id="name" name="name" value="New Paste">
-                        <a href="/use/editor" class="btn btn-secondary" id="open-editor">Open Full Screen</a>
-                    </div>
-                    <div class="modal-body">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">New Paste</h5>
+                    <button class="btn btn-primary" onclick="location.href ='/use/editor'" id="open-editor">Open Full Screen</button>
+                </div>
+                <div class="modal-body">
 
-                        <div class="container">
-                            <div id="editor">
-
-                            </div>
-                            <input type="hidden" name="fileContent" id="pasteContent">
-                            <input type="hidden" name="language" id="language">
-                            <div class="path"> Language
-                                <select name="" id="lang-select" class="directory">
-                  <option value="c">C</option>
-                  <option value="java">Java</option>
-                  <option value="py">Python</option>
-                </select>
-
-                            </div>
+                    <div class="container">
+                        <div id="editor">
 
                         </div>
+                        <div class="path"> Language
+                            <select name="" id="select-dir" class="directory">
+                  <option value="">C</option>
+                  <option value="">Java</option>
+                  <option value="">Python</option>
+                </select>
+                        </div>
+                    </div> <br>
+                    <p style="color: gray;">Uploads to current directory</p>
 
-                    </div>
-                </form>
+                </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    <button type="button" id="newpaste-btn" class="btn btn-primary">Save</button>
+                    <button type="button" class="btn btn-primary">Save</button>
                 </div>
             </div>
         </div>
@@ -313,31 +266,26 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.7/ace.js" integrity="sha256-C7DTYRJLG+B/VEzHGeoPMw699nsTQYPAXHKXZb+q04E=" crossorigin="anonymous"></script>
 <script>
+    var editor = ace.edit("editor");
+    editor.setTheme("ace/theme/github");
+    editor.session.setMode("ace/mode/javascript");
+    editor.setOptions({
+        fontSize: "12pt"
+    });
 </script>
 
 <script>
-    var nowDate = new Date();
-    var date = nowDate.getFullYear() + '/' + (nowDate.getMonth() + 1) + '/' + nowDate.getDate();
-    console.log(new Date().getDate() + '/' + (new Date().getMonth() + 1) + '/' + new Date().getFullYear())
-
     function getFile() {
         var fileInput = document.getElementById('upload-file');
 
         fileInput.addEventListener('change', function(e) {
             var file = fileInput.files[0];
-            const filename = fileInput.files[0].name;
-            const filesize = Math.ceil(fileInput.files[0].size / 1024)
-            let res = filename.split('.')
-            const fileext = res[1]
             var textType = /text.*/;
 
             if (file.type.match(textType)) {
                 var reader = new FileReader();
                 reader.onload = function(e) {
-                    document.getElementById('fileContent').value = reader.result;
-                    document.getElementById('filename').value = filename;
-                    document.getElementById('fileext').value = fileext;
-                    document.getElementById('filesize').value = filesize;
+                    document.getElementById('file-loc').value = reader.result;
                 }
 
                 reader.readAsText(file);
@@ -350,29 +298,8 @@
     $(document).ready(function() {
         console.log("ready!");
 
-        var editor = ace.edit("editor");
-        editor.setTheme("ace/theme/github");
-        editor.session.setMode("ace/mode/javascript");
-        editor.setOptions({
-            fontSize: "12pt"
-        });
-
-        $('#open-editor').click((e) => {
-            window.location = '/use/editor';
-        })
-
-        $.ajax({
-            url: '/use/getdirectories',
-            method: 'get'
-        }).done(res => {
-            for (i = 0; i < res.length; i++) {
-                $('#select-dir-upload').append(`<option value="${res[i]._id}"> ${res[i].name} </option>`)
-            }
-        })
-
         $('#upload-btn').click((e) => {
-            $('#parent').val($('#select-dir-upload').val())
-            $('#file-upload-form').submit();
+            $('#file-form').submit();
         })
 
         $('#span-close').click((e) => {
@@ -383,18 +310,6 @@
         $('#opener').click((e) => {
             $('#left').show()
             $('#opener').hide()
-        })
-
-        $('#create-folder-btn').click((e) => {
-            $('#visibility').val($('#select-aud').val())
-            $('#create-folder-form').submit()
-        })
-
-        $('#newpaste-btn').click((e) => {
-            $('#language').val($('#lang-select').val())
-            const code = editor.getValue()
-            $('#pasteContent').val(code)
-            $('#paste-form').submit()
         })
 
         let emailNo = 0;

@@ -6,6 +6,7 @@ const controller = require('../controllers/posts');
 const { getLogin, getRegister, postLogin, postRegister, getLogout } = require('../controllers/auth')
 const { openCollab } = require('../collab')
 const dir = require('../models/directory')
+const sharedDir = require('../models/shared_directory')
 
 //Auth
 router.get('/login', getLogin)
@@ -19,6 +20,7 @@ router.get('/editor', controller.get_editor);
 router.get('/get_user/:id', controller.get_user);
 router.get('/codeview/:id', controller.codeview);
 router.get('/directory/:id', controller.directory)
+router.get('/shared_dir/:id', controller.shared_dir)
 router.post('/search', controller.search)
 router.post('/run', controller.run_code);
 router.post('/readfile', controller.readFile);
@@ -36,6 +38,14 @@ router.post('/openCollab', openCollab)
 //ajax routes
 router.get('/getdirectories', async(req, res) => {
     const directories = await dir.find({ owner: req.user._id })
+    const shared = await sharedDir.find()
+
+    for (let i = 0; i < shared.length; i++) {
+        const col = shared[i].collaborators
+        if (col.includes(req.user.email) || shared[i].owner == req.user._id) {
+            directories.push(shared[i])
+        }
+    }
     res.send(directories)
 })
 

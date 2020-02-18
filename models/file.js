@@ -23,6 +23,10 @@ var FileModel = mongoose.Schema({
     tags: {
         type: [String]
     },
+    trigger: {
+        type: String,
+        default: 'letter'
+    },
     parent: {
         type: String
     },
