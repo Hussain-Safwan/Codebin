@@ -4,7 +4,11 @@ const SharedDirectoryModel = require('../models/shared_directory')
 const FileModel = require('../models/file')
 const User = require('../models/user')
 
-router.get('/', async(req, res) => {
+router.get('/', (req, res) => {
+    res.render('home')
+})
+
+router.get('/dashboard', async(req, res) => {
     if (!req.user) {
         res.render('login')
         return

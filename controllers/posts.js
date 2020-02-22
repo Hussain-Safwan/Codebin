@@ -3,24 +3,24 @@ const router = express.Router();
 const fs = require("fs");
 const readline = require("readline");
 const request = require("request");
-const nodemailer = require('nodemailer');
+const nodemailer = require("nodemailer");
 
-const DirectoryModel = require('../models/directory')
-const SharedDirectoryModel = require('../models/shared_directory')
-const FileModel = require('../models/file')
-const UserModel = require('../models/user')
+const DirectoryModel = require("../models/directory");
+const SharedDirectoryModel = require("../models/shared_directory");
+const FileModel = require("../models/file");
+const UserModel = require("../models/user");
 
 module.exports.get_user = async(req, res) => {
-    const id = req.params.id
-    const remoteUser = await UserModel.findOne({ _id: id })
-    const remoteFiles = await FileModel.find({ owner: id })
-    const remoteDirs = await DirectoryModel.find({ owner: id })
-    res.render('dashboard', {
+    const id = req.params.id;
+    const remoteUser = await UserModel.findOne({ _id: id });
+    const remoteFiles = await FileModel.find({ owner: id });
+    const remoteDirs = await DirectoryModel.find({ owner: id });
+    res.render("dashboard", {
         user: remoteUser,
         dirs: remoteDirs,
         file: remoteFiles
-    })
-}
+    });
+};
 
 module.exports.get_editor = (req, res) => {
     if (req.user) {
@@ -29,14 +29,13 @@ module.exports.get_editor = (req, res) => {
             run_result: ""
         });
     } else {
-        res.redirect('/use/login')
+        res.redirect("/use/login");
     }
-
 };
 
 module.exports.codeview = async(req, res) => {
-    const id = req.params.id
-    const code = await FileModel.findOne({ _id: id })
+    const id = req.params.id;
+    const code = await FileModel.findOne({ _id: id });
 
     return res.render("codeview", {
         source_code: code,
@@ -95,15 +94,15 @@ module.exports.run_from_view = async(req, res) => {
     const Language = req.body.language;
     var hackerEarth = require("hackerearth-node");
 
-    langMap = new Map()
-    langMap.set('cpp', 'C++')
-    langMap.set('java', 'Java')
-    langMap.set('py', 'Python')
+    langMap = new Map();
+    langMap.set("cpp", "C++");
+    langMap.set("java", "Java");
+    langMap.set("py", "Python");
 
-    const lang = langMap.get(Language)
+    const lang = langMap.get(Language);
 
-    const source_id = req.body.source_id
-    const sourceObj = await FileModel.findOne({ _id: source_id })
+    const source_id = req.body.source_id;
+    const sourceObj = await FileModel.findOne({ _id: source_id });
 
     var hackerEarth = new hackerEarth("392c70615809060562e8fa455c34aa3c57753a94");
     const clienSecret = "392c70615809060562e8fa455c34aa3c57753a94";
@@ -126,7 +125,7 @@ module.exports.run_from_view = async(req, res) => {
                     run_result: err
                 });
             } else {
-                console.log(output)
+                console.log(output);
                 return res.render("codeview", {
                     source_code: sourceObj,
                     run_result: output
@@ -143,45 +142,42 @@ module.exports.inc_score = (req, res) => {
 };
 
 module.exports.create_directory = async(req, res) => {
-    const {
-        name,
-        visibility
-    } = req.body
-    console.log(req.body)
-    const owner = req.user._id
+    const { name, visibility } = req.body;
+    console.log(req.body);
+    const owner = req.user._id;
     const newDirectory = await new DirectoryModel({
         name,
         visibility,
         owner
-    }).save()
+    }).save();
 
-    console.log('saved')
-    res.redirect('back')
-}
+    console.log("saved");
+    res.redirect("back");
+};
 
 module.exports.create_shared_directory = async(req, res) => {
     if (!req.user) {
-        res.redirect('/use/login')
+        res.redirect("/use/login");
     }
     const name = req.body.folderName;
-    const collaborators = req.body.recipents
-    const owner = req.user._id
-    const ownerName = req.user.name
+    const collaborators = req.body.recipents;
+    const owner = req.user._id;
+    const ownerName = req.user.name;
 
     const newSharedDir = await new SharedDirectoryModel({
         name,
         collaborators,
         owner,
         ownerName
-    }).save()
+    }).save();
 
-    const id = newSharedDir._id
+    const id = newSharedDir._id;
 
     for (let i = 0; i < 2; i++) {
         let rec = collaborators[i].trim();
         sendMail(rec, req, id);
     }
-    return res.redirect('back');
+    return res.redirect("back");
 };
 
 function sendMail(rec, req, id) {
@@ -207,27 +203,20 @@ function sendMail(rec, req, id) {
         if (error) {
             console.log(error);
         } else {
-            console.log("Message sent")
+            console.log("Message sent");
         }
     });
 }
 
 module.exports.upload_file = async(req, res) => {
     if (!req.user) {
-        res.redirect('/use/login')
+        res.redirect("/use/login");
     }
-    const {
-        filename,
-        fileext,
-        filesize,
-        fileContent,
-        parent,
-        Tags
-    } = req.body
-    const tags = Tags.split(' ')
-    const origin = 'file'
-    const owner = req.user._id
-    const ownerName = req.user.name
+    const { filename, fileext, filesize, fileContent, parent, Tags } = req.body;
+    const tags = Tags.split(" ");
+    const origin = "file";
+    const owner = req.user._id;
+    const ownerName = req.user.name;
     newFile = await new FileModel({
         filename,
         fileext,
@@ -238,11 +227,11 @@ module.exports.upload_file = async(req, res) => {
         ownerName,
         parent,
         origin
-    }).save()
+    }).save();
 
-    console.log('file saved')
-    res.redirect('/')
-}
+    console.log("file saved");
+    res.redirect("/");
+};
 
 function byteLength(str) {
     var s = str.length;
@@ -250,33 +239,34 @@ function byteLength(str) {
         var code = str.charCodeAt(i);
         if (code > 0x7f && code <= 0x7ff) s++;
         else if (code > 0x7ff && code <= 0xffff) s += 2;
-        if (code >= 0xDC00 && code <= 0xDFFF) i--; //trail surrogate
+        if (code >= 0xdc00 && code <= 0xdfff) i--; //trail surrogate
     }
     return s;
 }
 
 module.exports.new_paste = async(req, res) => {
     if (!req.user) {
-        res.redirect('/use/login')
+        res.redirect("/use/login");
     }
-    let fileext = req.body.language
-    const ownerName = req.user.name
-    const owner = req.user._id
-    const filename = req.body.name + '.' + fileext
-    const fileContent = req.body.fileContent
-    const parent = req.body.parent
-    const filesize = Math.ceil(byteLength(fileContent) / 1000)
-    const origin = 'paste'
-    const Tags = req.body.tags
-    const tags = Tags.split('#')
-    console.log(parent)
-    langMap = new Map()
-    langMap.set('c', 'C')
-    langMap.set('cpp', 'C++')
-    langMap.set('java', 'Java')
-    langMap.set('py', 'Python')
-    langMap.set('js', 'Javascript')
-    fileext = langMap.get(fileext)
+    let fileext = req.body.language;
+    const ownerName = req.user.name;
+    const owner = req.user._id;
+    const filename = req.body.name + "." + fileext;
+    const fileContent = req.body.fileContent;
+    const parent = req.body.parent;
+    const filesize = Math.ceil(byteLength(fileContent) / 1000);
+    const origin = "paste";
+    const Tags = req.body.tags;
+    const tags = Tags.split("#");
+
+    langMap = new Map();
+    langMap.set("c", "C");
+    langMap.set("cpp", "C++");
+    langMap.set("java", "Java");
+    langMap.set("py", "Python");
+    langMap.set("js", "Javascript");
+    fileext = langMap.get(fileext);
+
     const newFile = await new FileModel({
         filename,
         fileext,
@@ -287,72 +277,125 @@ module.exports.new_paste = async(req, res) => {
         filesize,
         origin,
         tags
-    }).save()
+    }).save();
 
-    res.redirect('/use/editor')
-}
+    res.redirect("/use/editor");
+};
 
 function getTags(obj) {
-    tags = obj.tags.split('#')
-    return tags
+    tags = obj.tags.split("#");
+    return tags;
 }
 
 module.exports.search = async(req, res) => {
-    const phrase = (req.body.search).toLowerCase()
-    const files = await FileModel.find()
-    const directories = await DirectoryModel.find()
+    const phrase = req.body.search.toLowerCase();
+    let files = []
+    if (phrase.includes('::')) {
+        res = phrase.split('::')
+        console.log(res[1])
+        _files = await FileModel.find()
+        for (let i = 0; i < _files.length; i++) {
+            if (_files[i].ownerName.toLowerCase().includes(res[1])) {
+                files.push(_files[i])
+            }
+        }
+    } else {
+        files = await FileModel.find();
+    }
 
-    let filteredFiles = []
-    let filteredDirs = []
-    let allTags = new Array()
+    const directories = await DirectoryModel.find();
+
+    let filteredFiles = [];
+    let filteredDirs = [];
+    let allTags = new Array();
 
     for (let i = 0; i < files.length; i++) {
-        if ((files[i].filename).toLowerCase().includes(phrase)) {
-            filteredFiles.push(files[i])
+        if (files[i].filename.toLowerCase().includes(phrase)) {
+            filteredFiles.push(files[i]);
         }
     }
     for (let i = 0; i < files.length; i++) {
-        const tags = files[i].tags
+        const tags = files[i].tags;
         for (let j = 0; j < tags.length; j++) {
             if (tags[j].includes(phrase) && !filteredFiles.includes(files[i])) {
-                filteredFiles.push(files[i])
+                filteredFiles.push(files[i]);
             }
         }
     }
 
     for (let i = 0; i < directories.length; i++) {
-        if ((directories[i].name).toLowerCase().includes(phrase)) {
-            filteredDirs.push(directories[i])
+        if (directories[i].name.toLowerCase().includes(phrase)) {
+            filteredDirs.push(directories[i]);
         }
     }
 
-    return res.render('search', {
+    return res.render("search", {
+        phrase,
         files: filteredFiles,
         directories: filteredDirs
-    })
+    });
+};
+
+module.exports.search_lang = async(req, res) => {
+    const choice = req.body.choice
+    console.log(choice)
+    const phrase = req.body.phrase.toLowerCase();
+    const files = await FileModel.find({ fileext: choice })
+
+    const directories = await DirectoryModel.find();
+
+    let filteredFiles = [];
+    let filteredDirs = [];
+    let allTags = new Array();
+
+    for (let i = 0; i < files.length; i++) {
+        if (files[i].filename.toLowerCase().includes(phrase)) {
+            filteredFiles.push(files[i]);
+        }
+    }
+    for (let i = 0; i < files.length; i++) {
+        const tags = files[i].tags;
+        for (let j = 0; j < tags.length; j++) {
+            if (tags[j].includes(phrase) && !filteredFiles.includes(files[i])) {
+                filteredFiles.push(files[i]);
+            }
+        }
+    }
+
+    for (let i = 0; i < directories.length; i++) {
+        if (directories[i].name.toLowerCase().includes(phrase)) {
+            filteredDirs.push(directories[i]);
+        }
+    }
+    console.log('rendered')
+    return res.render("search", {
+        phrase,
+        files: filteredFiles,
+        directories: filteredDirs
+    });
 }
 
 module.exports.directory = async(req, res) => {
-    const id = req.params.id
-    const dir = await DirectoryModel.findOne({ _id: id })
-    const files = await FileModel.find({ parent: id })
-    const dirname = dir.name
-    res.render('directory_view', {
+    const id = req.params.id;
+    const dir = await DirectoryModel.findOne({ _id: id });
+    const files = await FileModel.find({ parent: id });
+    const dirname = dir.name;
+    res.render("directory_view", {
         name: dirname,
         file: files
-    })
-}
+    });
+};
 
 module.exports.shared_dir = async(req, res) => {
     if (!req.user) {
-        res.redirect('/use/login')
+        res.redirect("/use/login");
     }
-    const id = req.params.id
-    const dir = await SharedDirectoryModel.findOne({ _id: id })
-    const files = await FileModel.find({ parent: id })
-    const dirname = dir.name
-    res.render('shared_directory_view', {
+    const id = req.params.id;
+    const dir = await SharedDirectoryModel.findOne({ _id: id });
+    const files = await FileModel.find({ parent: id });
+    const dirname = dir.name;
+    res.render("shared_directory_view", {
         name: dirname,
         file: files
-    })
-}
+    });
+};

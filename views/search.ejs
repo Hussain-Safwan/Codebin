@@ -14,6 +14,10 @@
 
 <body>
     <div class="header">
+        <form action="/use/search/lang" id="filter-form" method="POST">
+            <input type="hidden" name="phrase" id="phrase" value="<%= phrase %>">
+            <input type="hidden" name="choice" id="choice">
+        </form>
         <div class="cont">
             <a href="#">
                 <div class="files" id="files">Files</div>
@@ -24,69 +28,129 @@
             <a href="#">
                 <div class="users" id="users">Users</div>
             </a>
+            <a href="#" data-target="#exampleModal" data-toggle="modal">
+                <i class="fas fa-cog"></i>
+            </a>
         </div>
     </div>
 
     <div class="results-space">
         <div class="file-show" id="file-show">
-            <% for (let i=0; i<files.length; i++) { %>
-                <div class="box">
-                    <div class="logo">
-                        <i class="fas fa-file-code"></i>
-                    </div>
-                    <div class="non-logo">
-                        <a href="/use/codeview/<%= files[i]._id %>">
-                            <div class="name">
-                                <%= files[i].filename %>
-                            </div>
-                        </a>
-                        <div class="owner">
-                            <%= files[i].ownerName %>
-                        </div>
-                        <div class="flexbox">
-                            <div class="language"><i class="fas fa-circle"></i>
-                                <%= files[i].fileext %>
-                            </div>
-                            <div class="score"><i class="fas fa-circle"></i> 40</div>
-                        </div>
-
-
-                    </div>
+            <% if (files.length == 0) {%>
+                <div class="not-found">
+                    <img src="https://i.gifer.com/74cN.gif" alt="">
+                    <p class="text">No results found</p>
                 </div>
                 <% } %>
+
+                    <% for (let i=0; i<files.length; i++) { %>
+                        <div class="box">
+                            <div class="logo">
+                                <i class="fas fa-file-code"></i>
+                            </div>
+                            <div class="non-logo">
+                                <a href="/use/codeview/<%= files[i]._id %>">
+                                    <div class="name">
+                                        <%= files[i].filename %>
+                                    </div>
+                                </a>
+                                <div class="owner">
+                                    <%= files[i].ownerName %>
+                                </div>
+                                <div class="flexbox">
+                                    <div class="language"><i class="fas fa-circle"></i>
+                                        <%= files[i].fileext %>
+                                    </div>
+                                    <div class="score"><i class="fas fa-circle"></i> 40</div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                        <% } %>
         </div>
 
         <div class="dir-show" id="dir-show">
-            <% for (let i=0; i<directories.length; i++) { %>
-                <div class="box">
-                    <div class="logo">
-                        <i class="fas fa-folder"></i>
-                    </div>
-                    <div class="non-logo">
-                        <a href="/use/directory/<%= directories[i]._id %>">
-                            <div class="name">
-                                <%= directories[i].name %>
+            <% if (directories.length == 0) {%>
+                <div class="not-found">
+                    <img src="https://i.gifer.com/74cN.gif" alt="">
+                    <p class="text">No results found</p>
+                </div>
+                <% } %>
+                    <% for (let i=0; i<directories.length; i++) { %>
+                        <div class="box">
+                            <div class="logo">
+                                <i class="fas fa-folder"></i>
                             </div>
-                        </a>
-                        <div class="owner">Hussain Safwan</div>
-                        <!-- <div class="tags">
+                            <div class="non-logo">
+                                <a href="/use/directory/<%= directories[i]._id %>">
+                                    <div class="name">
+                                        <%= directories[i].name %>
+                                    </div>
+                                </a>
+                                <div class="owner">Hussain Safwan</div>
+                                <!-- <div class="tags">
               <% for (let i=0; i<4; i++) { %> 
                 <a href="#" class="atags">tag</a>
                 <% } %>
             </div>  -->
 
-                    </div>
-                </div>
-                <% } %>
+                            </div>
+                        </div>
+                        <% } %>
         </div>
 
     </div>
 
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Search Prefernces</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+                </div>
+                <div class="modal-body">
+                    <div class="lang">
+                        Language
+                        <select data-dismiss="modal" id="lang">
+                            <option value="c">C</option>
+                            <option value="cpp">C++</option>
+                            <option value="java">Java</option>
+                            <option value="js">Javascript</option>
+                            <option value="py">Python</option>
+                        </select>
+
+                        <div class="runnable">
+                            Executability
+                            <select data-dismiss="modal" id="runnable">
+                                <option value="exec">Only executable</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div> -->
+                </div>
+            </div>
+        </div>
+
 </body>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
 <script>
     $(document).ready(() => {
         console.log('ready')
+
+        $('#lang').click((e) => {
+            const choice = $('#lang').val()
+            const phrase = $('#phrase').val()
+            $('#choice').val(choice)
+            $('#filter-form').submit()
+        })
 
         $('#files').click((e) => {
             console.log('dir')

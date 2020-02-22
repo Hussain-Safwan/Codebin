@@ -7,6 +7,7 @@ const { getLogin, getRegister, postLogin, postRegister, getLogout } = require('.
 const { openCollab } = require('../collab')
 const dir = require('../models/directory')
 const sharedDir = require('../models/shared_directory')
+const fileModel = require('../models/file')
 
 //Auth
 router.get('/login', getLogin)
@@ -36,6 +37,9 @@ router.post('/new_paste', controller.new_paste)
 router.post('/openCollab', openCollab)
 
 //ajax routes
+
+router.post('/search/lang', controller.search_lang)
+
 router.get('/getdirectories', async(req, res) => {
     const directories = await dir.find({ owner: req.user._id })
     const shared = await sharedDir.find()

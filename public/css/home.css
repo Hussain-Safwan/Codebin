@@ -1,0 +1,80 @@
+@import url("https://fonts.googleapis.com/css?family=Noto+Sans&display=swap");
+body {
+  font-family: "Noto Sans", sans-serif;
+}
+
+.bc img {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  opacity: 0.2;
+}
+
+.carousel img {
+  height: 500px;
+  width: 20%;
+}
+
+.carousel .highlight {
+  font-weight: bold;
+  color: red;
+}
+
+.mid-section {
+  width: 80%;
+  margin: auto;
+}
+
+.mid-section .cards .card {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 100px;
+  width: 50%;
+  height: 200px;
+  border: none;
+}
+
+.mid-section .cards .card .text {
+  font-family: "Noto Sans", sans-serif;
+  margin-left: 10px;
+  margin-top: 20px;
+  color: gray;
+  width: 80%;
+}
+
+.mid-section .cards .card .image {
+  height: 100%;
+  width: 20%;
+  background-color: none;
+}
+
+.mid-section .cards .card-right {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-left: auto;
+  margin-top: 100px;
+  width: 50%;
+  height: 200px;
+}
+
+.mid-section .cards .card-right .text {
+  font-family: "Noto Sans", sans-serif;
+  margin-left: 10px;
+  margin-top: 20px;
+  color: gray;
+  width: 80%;
+}
+
+.mid-section .cards .card-right .image {
+  height: 100%;
+  width: 20%;
+}
+
+.mid-section .cards .card-right .card-img {
+  height: 50%;
+  width: 50%;
+  margin-left: 20px;
+}
+/*# sourceMappingURL=home.css.map */

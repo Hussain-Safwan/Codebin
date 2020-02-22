@@ -3,6 +3,25 @@ body {
   font-family: "Noto Sans", sans-serif;
 }
 
+select {
+  margin-top: 15px;
+  margin-left: 15px;
+  border-radius: 20px;
+  padding: 5px 15px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+}
+
+.not-found {
+  margin-left: 25%;
+}
+
+.not-found .text {
+  margin-left: 15%;
+  font-size: 30px;
+  color: gray;
+}
+
 .header {
   width: 50%;
   margin: auto;
@@ -152,39 +171,50 @@ body {
   .results-space {
     width: 100%;
   }
-  .results-space .file-show .logo i, .results-space .dir-show .logo i {
+  .results-space .file-show .logo i,
+  .results-space .dir-show .logo i {
     font-size: 25px;
     margin: 15px 15px;
   }
-  .results-space .file-show .non-logo .name, .results-space .dir-show .non-logo .name {
+  .results-space .file-show .non-logo .name,
+  .results-space .dir-show .non-logo .name {
     margin-top: 0px;
     font-size: 15px;
   }
-  .results-space .file-show .non-logo .owner, .results-space .dir-show .non-logo .owner {
+  .results-space .file-show .non-logo .owner,
+  .results-space .dir-show .non-logo .owner {
     font-size: 10px;
   }
-  .results-space .file-show .non-logo .flexbox, .results-space .dir-show .non-logo .flexbox {
+  .results-space .file-show .non-logo .flexbox,
+  .results-space .dir-show .non-logo .flexbox {
     width: 35%;
   }
-  .results-space .file-show .non-logo .flexbox .language, .results-space .dir-show .non-logo .flexbox .language {
+  .results-space .file-show .non-logo .flexbox .language,
+  .results-space .dir-show .non-logo .flexbox .language {
     font-size: 12px;
   }
-  .results-space .file-show .non-logo .flexbox .language i, .results-space .dir-show .non-logo .flexbox .language i {
+  .results-space .file-show .non-logo .flexbox .language i,
+  .results-space .dir-show .non-logo .flexbox .language i {
     font-size: 10px;
   }
-  .results-space .file-show .non-logo .flexbox .score, .results-space .dir-show .non-logo .flexbox .score {
+  .results-space .file-show .non-logo .flexbox .score,
+  .results-space .dir-show .non-logo .flexbox .score {
     font-size: 12px;
   }
-  .results-space .file-show .non-logo .flexbox .score i, .results-space .dir-show .non-logo .flexbox .score i {
+  .results-space .file-show .non-logo .flexbox .score i,
+  .results-space .dir-show .non-logo .flexbox .score i {
     font-size: 10px;
   }
-  .results-space .file-show .non-logo .tags, .results-space .dir-show .non-logo .tags {
+  .results-space .file-show .non-logo .tags,
+  .results-space .dir-show .non-logo .tags {
     margin-top: 0px;
   }
-  .results-space .file-show .non-logo .tags a, .results-space .dir-show .non-logo .tags a {
+  .results-space .file-show .non-logo .tags a,
+  .results-space .dir-show .non-logo .tags a {
     font-size: 10px;
   }
-  .results-space .file-show .box, .results-space .dir-show .box {
+  .results-space .file-show .box,
+  .results-space .dir-show .box {
     height: 80px;
   }
 }
