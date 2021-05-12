@@ -29,7 +29,7 @@
         "monaco-editor": "^0.19.2",
         "mongoose": "^5.8.11",
         "net": "^1.0.2",
-        "nodemailer": "^6.4.2",
+        "nodemailer": "^6.4.16",
         "passport": "^0.4.1",
         "passport-local": "^1.0.0",
         "path": "^0.12.7",
